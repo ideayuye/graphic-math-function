@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>graphic</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<canvas id="mainCanvas" width="500" height="500"></canvas>
+
+	<script type="text/javascript" src="src/utils.js"></script>
+	<script type="text/javascript" src="src/grapher.js"></script>
+    <script type="text/javascript">
+        var grapher = null;
+        function myInit()
+        {
+            grapher = new Grapher();
+            
+        }
+        myInit();
+        grapher.drawGraph("sin(x)",'#ffc040');
+	</script>
+</body>
+
+</html>
