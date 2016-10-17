@@ -1,0 +1,16 @@
+
+body{
+    position: relative;
+}
+
+#mainCanvas{
+    width: 100%;
+    height: 100%;
+}
+
+#myCoords{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+

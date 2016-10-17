@@ -5,24 +5,18 @@
 	<title>graphic</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="src/normalize.css">
+    <link rel="stylesheet" type="text/css" href="src/style.css">
 </head>
 
 <body>
+    <p id="myCoords"></p>
 	<canvas id="mainCanvas" width="500" height="500"></canvas>
 
+    <script type="text/javascript" src="http://zeptojs.com/zepto.min.js"></script>
 	<script type="text/javascript" src="src/utils.js"></script>
 	<script type="text/javascript" src="src/grapher.js"></script>
-    <script type="text/javascript">
-        var grapher = null;
-        function myInit()
-        {
-            grapher = new Grapher();
-            
-        }
-        myInit();
-        grapher.drawGraph("sin(x)",'#ffc040');
-	</script>
+    <script type="text/javascript" src="src/main.js"></script>
 </body>
 
 </html>
