@@ -10,4 +10,7 @@ function myInit() {
     
 }
 myInit();
-grapher.drawGraph("sin(x)", '#ffc040');
+// grapher.drawGraph("sin(x)", '#ffc040');
+grapher.formula = "sin(x)";
+grapher.draw();
+

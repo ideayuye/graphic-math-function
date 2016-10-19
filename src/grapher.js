@@ -9,7 +9,8 @@ function Grapher()
     this.mMouseFunction = 0;
 
     // ripped from Ed Mackey
-    this.blackList = ["=","[","]","'",";", "new", "ml", "$", ").", "alert", "ook", "ipt", "doc", "win", "set", "get", "tim", "net", "post", "black", "z"];
+    this.blackList = ["=","[","]","'",";", "new", "ml", "$", ").", "alert", "ook", "ipt", "doc", 
+    "win", "set", "get", "tim", "net", "post", "black", "z"];
 
     this.mCx = 0.0;
     this.mCy = 0.0;
@@ -21,12 +22,19 @@ function Grapher()
     this.mShowGuides = true;
 
     var me = this;
+    // 桌面端
     this.mCanvas.onmousedown = function(ev) { me.mouseDown(ev); }
     this.mCanvas.onmousemove = function(ev) { me.mouseMove(ev); }
     this.mCanvas.onmouseup   = function(ev) { me.mouseUp(ev); }
     this.mCanvas.onmouseout  = function(ev) { me.mouseUp(ev); }
+    // 适配移动端
+    this.mCanvas.ontouchstart = function(ev) { me.mouseDown(ev); }
+    this.mCanvas.ontouchmove = function(ev) { me.mouseMove(ev); }
+    this.mCanvas.ontouchend  = function(ev) { me.mouseUp(ev);}
 
-    // this.draw();
+    this.formula = "x";
+
+    this.draw();
 }
 
 Grapher.prototype.toggleShowGuides = function()
@@ -156,7 +164,7 @@ Grapher.prototype.drawGraph = function(formula,mycolor)
     this.mContext.closePath();
 }
 
-/*Grapher.prototype.draw = function(id)
+Grapher.prototype.draw = function(id)
 {
     var minx = this.mCx - this.mRx;
     var maxx = this.mCx + this.mRx;
@@ -177,14 +185,16 @@ Grapher.prototype.drawGraph = function(formula,mycolor)
         ctx.beginPath(); ctx.moveTo(0, yPos); ctx.lineTo(this.mXres,  yPos); ctx.stroke(); ctx.closePath();
     }
 
+    this.drawGraph(this.formula, '#ffc040');
+
     // graphs
-    if( document.getElementById('draw1').checked ) { var formula1 = document.getElementById('formula1').value; if (this.notOnBlackList(formula1) == true) this.drawGraph(formula1,'#ffc040'); }
+    /*if( document.getElementById('draw1').checked ) { var formula1 = document.getElementById('formula1').value; if (this.notOnBlackList(formula1) == true) this.drawGraph(formula1,'#ffc040'); }
     if( document.getElementById('draw2').checked ) { var formula2 = document.getElementById('formula2').value; if (this.notOnBlackList(formula2) == true) this.drawGraph(formula2,'#ffffa0'); }
     if( document.getElementById('draw3').checked ) { var formula3 = document.getElementById('formula3').value; if (this.notOnBlackList(formula3) == true) this.drawGraph(formula3,'#a0ffc0'); }
     if( document.getElementById('draw4').checked ) { var formula4 = document.getElementById('formula4').value; if (this.notOnBlackList(formula4) == true) this.drawGraph(formula4,'#40c0ff'); }
     if( document.getElementById('draw5').checked ) { var formula5 = document.getElementById('formula5').value; if (this.notOnBlackList(formula5) == true) this.drawGraph(formula5,'#d0a0ff'); }
     if( document.getElementById('draw6').checked ) { var formula6 = document.getElementById('formula6').value; if (this.notOnBlackList(formula6) == true) this.drawGraph(formula6,'#ff80c0'); }
-
+*/
     // guides
     if( this.mShowGuides )
     {
@@ -210,7 +220,7 @@ Grapher.prototype.drawGraph = function(formula,mycolor)
         }
 
     }
-}*/
+}
 
 Grapher.prototype.mouseDown = function(e)
 {
