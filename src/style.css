@@ -1,7 +1,8 @@
 
-body{
-    position: relative;
+html,body{
+    height: 100%;
 }
+
 
 #mainCanvas{
     width: 100%;
@@ -9,7 +10,7 @@ body{
 }
 
 #myCoords{
-    position: absolute;
+    position: fixed;
     top: 46px;
     left: 0;
     color: #fff;

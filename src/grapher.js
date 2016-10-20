@@ -1,3 +1,14 @@
+
+var captureMousePos = function(ev){
+        if(!ev.touches.length)
+            return;
+        var touch  = ev.touches[0];
+        ev.button = 0;
+        ev.clientX = touch.clientX;
+        ev.clientY = touch.clientY;
+        return 1;
+}
+
 function Grapher()
 {
     this.mCanvas = document.getElementById('mainCanvas');
@@ -28,14 +39,19 @@ function Grapher()
     this.mCanvas.onmouseup   = function(ev) { me.mouseUp(ev); }
     this.mCanvas.onmouseout  = function(ev) { me.mouseUp(ev); }
     // 适配移动端
-    this.mCanvas.ontouchstart = function(ev) { me.mouseDown(ev); }
-    this.mCanvas.ontouchmove = function(ev) { me.mouseMove(ev); }
-    this.mCanvas.ontouchend  = function(ev) { me.mouseUp(ev);}
+    var $mCanvas = $(this.mCanvas);
+    $mCanvas.on('touchstart' ,function(ev) { captureMousePos(ev) && me.mouseDown(ev); });
+    $mCanvas.on('touchmove', function (ev) {
+        ev.preventDefault();
+        captureMousePos(ev) && me.mouseMove(ev);
+    });
+    $mCanvas.on('touchend' ,function(ev) { captureMousePos(ev) && me.mouseUp(ev);});
 
     this.formula = "x";
-
     this.draw();
 }
+
+
 
 Grapher.prototype.toggleShowGuides = function()
 {
