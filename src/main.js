@@ -7,20 +7,28 @@ function myInit() {
     canvas.setAttribute('width',w);
     canvas.setAttribute('height',h);
     grapher = new Grapher();
-    var $input = $('#input-panel input');
-    $input.change(function(){
-        var formula = $(this).val().trim();
-        if(!grapher.notOnBlackList(formula))
-            return;
-        var x = 1.1,y=0,isError = 0;
-        try{
-            with( Math ) { eval("y = " + formula); }
-        }catch(e){
-            isError = 1;
-        }
-        if(!isError){
-            grapher.formula = formula;
-            grapher.draw();
+
+    new Vue({
+        el:'#input-panel',
+        data:{
+            formula:''
+        },
+        methods:{
+            changeFormula:function(){
+                 var formula = this.formula;
+                if(!grapher.notOnBlackList(formula))
+                    return;
+                var x = 1.1,y=0,isError = 0;
+                try{
+                    with( Math ) { eval("y = " + formula); }
+                }catch(e){
+                    isError = 1;
+                }
+                if(!isError){
+                    grapher.formula = formula;
+                    grapher.draw();
+                }
+            }
         }
     });
 }
@@ -29,7 +37,6 @@ grapher.formula = "sin(x)";
 grapher.draw();
 
 //hammer test
-var $input = $('#input-panel input');
 var hammer = new Hammer(canvas);
     hammer.get('pinch').set({enable:true});
 
@@ -44,6 +51,8 @@ hammer.on('pinchstart',function(ev){
 hammer.on('pinch',function(ev){
     grapher.mScale(ev);
 });
+
+
 
 
 

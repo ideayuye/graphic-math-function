@@ -1,25 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<title>graphic</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="stylesheet" type="text/css" href="src/normalize.css">
     <link rel="stylesheet" type="text/css" href="src/style.css">
+
 </head>
 
 <body>
 	<div id="input-panel">
-		<input type="text" name="" value="" placeholder="请输入数学函数">
+		<input type="text" name="" v-model="formula"  placeholder="请输入数学函数" v-on:change="changeFormula">
 	</div>
     <p id="myCoords"></p>
 	<canvas id="mainCanvas" width="500" height="500"></canvas>
-
-    <script type="text/javascript" src="src/zepto.min.js"></script>
+	<script type="text/javascript" src="src/vue.min.js"></script>
 	<script type="text/javascript" src="src/hammer.min.js"></script>
 	<script type="text/javascript" src="src/grapher.js"></script>
     <script type="text/javascript" src="src/main.js?v=2"></script>
 </body>
-
 </html>
