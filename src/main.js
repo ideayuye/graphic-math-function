@@ -10,6 +10,8 @@ function myInit() {
     var $input = $('#input-panel input');
     $input.change(function(){
         var formula = $(this).val().trim();
+        if(!grapher.notOnBlackList(formula))
+            return;
         var x = 1.1,y=0,isError = 0;
         try{
             with( Math ) { eval("y = " + formula); }
@@ -26,35 +28,23 @@ myInit();
 grapher.formula = "sin(x)";
 grapher.draw();
 
-
 //hammer test
 var $input = $('#input-panel input');
-var ci = 0,pi= 0;
 var hammer = new Hammer(canvas);
     hammer.get('pinch').set({enable:true});
 
-/*hammer.on('pan',function(ev){
-    console.log(ev);
-    $input.val('pan'+ ci++);
-});*/
-
-/*hammer.on('pinch',function(){
-    console.log('pinch');
-    $input.val('pinch'+ pi++);
-});*/
-
-/*hammer.on('pinchstart',function(ev){
-    console.log('pinchstart');
-    $input.val('pinchstart'+ pi++);
-});*/
-
-var px = 0;
-hammer.on('pinchin',function(ev){
-    console.log('pinchin');
-    var scale = 1;
-    scale = ev.originalEvent.gesture.scale;
-    $input.val('pinchin'+ px++ +":"+ scale);
+hammer.on('pan',function(ev){
+    grapher.mPan(ev);
 });
+
+hammer.on('pinchstart',function(ev){
+    grapher.mScaleStart();RTCStatsProvider
+});
+
+hammer.on('pinch',function(ev){
+    grapher.mScale(ev);
+});
+
 
 
 
