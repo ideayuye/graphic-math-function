@@ -3,7 +3,6 @@ html,body{
     height: 100%;
 }
 
-
 #mainCanvas{
     width: 100%;
     height: 100%;
@@ -21,12 +20,37 @@ html,body{
     top: 0;
     left: 0;
     width: 100%;
-    height: 28px;
 }
+
+#input-panel .formula-box{
+    position: relative;
+}
+
+#input-panel .formula-box .i-help{
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    display: block;
+    width: 28px;
+    height: 28px;
+    background: url(images/question.svg);
+    background-size: cover;
+    color: #f50;
+}
+
 
 #input-panel input{
     display: block;
     width: 100%;
-    height: 100%;
     padding: 4px 8px;
+    height: 28px;
+}
+
+
+.hide{
+    display: none;
+}
+
+.help{
+    color: #f50;
 }
