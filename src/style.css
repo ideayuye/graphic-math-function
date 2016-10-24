@@ -4,8 +4,7 @@ html,body{
 }
 
 #mainCanvas{
-    width: 100%;
-    height: 100%;
+    width: 100%;height: 100%;
 }
 
 #myCoords{
@@ -38,7 +37,6 @@ html,body{
     color: #f50;
 }
 
-
 #input-panel input{
     display: block;
     width: 100%;
@@ -46,11 +44,36 @@ html,body{
     height: 28px;
 }
 
-
+/*帮助面板*/
 .hide{
     display: none;
 }
 
 .help{
-    color: #f50;
+    color: #666;background: #FFF;padding: 8px 10px;width: 90%; margin: 10px auto;
+    font: 12px "Microsoft YaHei";
 }
+.help ul{
+    padding-left: 12px;
+}
+
+.help li {
+    list-style: none;
+}
+
+/*可选函数按钮面板*/
+.func-btns{
+    display: flex;padding: 0;flex-wrap: wrap;background:#fff;margin: 0;
+}
+.func-btns li{
+    flex: 1 1 25%;color:#f50;list-style: none;padding: 5px;box-sizing: border-box;
+}
+
+.func-btns li a{
+    display: block;width: 100%;padding: 5px 0;
+    border: 1px solid #DDD;text-align: center;border-radius: 3px;
+    text-decoration: none;color: #333;line-height: 18px;
+}
+
+
+

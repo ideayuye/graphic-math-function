@@ -8,17 +8,34 @@ function myInit() {
     canvas.setAttribute('height', h);
     grapher = new Grapher();
 
-    var helpComponet = Vue.extend({
+    /*Vue.component('help', {
         template: "<div class='help' v-bind:class=\"{'hide':ishide}\">help conponent {{ishide}}</div>",
         props:['ishide']
-    });
-    Vue.component('help', helpComponet);
+    });*/
 
-    new Vue({
+    var app = new Vue({
         el: '#input-panel',
         data: {
             formula: '',
-            ishide : true
+            ishide : true,
+            funcBtns: [
+                { message: '*' },
+                { message: '/' },
+                { message: '+' },
+                { message: '-' },
+                { message: 'sin' },
+                { message: 'cos' },
+                { message: 'log' },
+                { message: 'log2' },
+                { message: 'log10' },
+                { message: 'abs' },
+                { message: 'pow' },
+                { message: 'sqrt' },
+                { message: 'tan' },
+                { message: 'asin' },
+                { message: 'acos' },
+                { message: 'atan' }
+            ]
         },
         methods: {
             changeFormula: function () {
@@ -36,12 +53,20 @@ function myInit() {
                     grapher.draw();
                 }
             },
-            helpClick :function(){
+            helpClick :function(e){
+                e.stopPropagation();
                 this.ishide = !this.ishide;
             }
         }
     });
+
+    document.onclick = function(e){
+        var help = document.querySelector('.help');
+        if(!help.contains(e.target))
+            app.ishide = true;
+    }
 }
+
 myInit();
 grapher.formula = "sin(x)";
 grapher.draw();
