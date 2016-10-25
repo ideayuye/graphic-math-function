@@ -1,79 +1,92 @@
+@charset "UTF-8";
+html, body {
+  height: 100%; }
 
-html,body{
-    height: 100%;
-}
+#mainCanvas {
+  width: 100%;
+  height: 100%; }
 
-#mainCanvas{
-    width: 100%;height: 100%;
-}
+#myCoords {
+  position: fixed;
+  top: 46px;
+  left: 0;
+  color: #fff; }
 
-#myCoords{
-    position: fixed;
-    top: 46px;
-    left: 0;
-    color: #fff;
-}
+#input-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; }
 
-#input-panel{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
+#input-panel .formula-box {
+  position: relative; }
 
-#input-panel .formula-box{
-    position: relative;
-}
+#input-panel .formula-box .i-help {
+  position: absolute;
+  right: 5px;
+  top: 6px;
+  display: block;
+  width: 28px;
+  height: 28px;
+  background: url(images/question.svg);
+  background-size: cover;
+  color: #f50; }
 
-#input-panel .formula-box .i-help{
-    position: absolute;
-    right: 5px;
-    top: 8px;
-    display: block;
-    width: 28px;
-    height: 28px;
-    background: url(images/question.svg);
-    background-size: cover;
-    color: #f50;
-}
+#input-panel input {
+  display: block;
+  width: 100%;
+  padding: 4px 8px 4px 50px;
+  height: 28px; }
 
-#input-panel input{
-    display: block;
-    width: 100%;
-    padding: 4px 8px;
-    height: 28px;
-}
+#input-panel .l-func {
+  position: absolute;
+  top: 11px;
+  left: 5px; }
 
 /*帮助面板*/
-.hide{
-    display: none;
-}
+.hide {
+  display: none; }
 
-.help{
-    color: #666;background: #FFF;padding: 8px 10px;width: 90%; margin: 10px auto;
-    font: 12px "Microsoft YaHei";
-}
-.help ul{
-    padding-left: 12px;
-}
+.help {
+  color: #666;
+  background: #FFF;
+  padding: 6px 10px;
+  width: 90%;
+  margin: 10px auto;
+  font: 12px "Microsoft YaHei"; }
+
+.help ul {
+  padding-left: 12px; }
 
 .help li {
-    list-style: none;
-}
+  list-style: none; }
 
 /*可选函数按钮面板*/
-.func-btns{
-    display: flex;padding: 0;flex-wrap: wrap;background:#fff;margin: 0;
-}
-.func-btns li{
-    flex: 1 1 25%;color:#f50;list-style: none;padding: 5px;box-sizing: border-box;
-}
+.clearfix:after {
+  content: '';
+  clear: both;
+  display: block; }
 
-.func-btns li a{
-    display: block;width: 100%;padding: 5px 0;
-    border: 1px solid #DDD;text-align: center;border-radius: 3px;
-    text-decoration: none;color: #333;line-height: 18px;
-}
+.func-btns {
+  padding: 0;
+  background: #fff;
+  margin: 0; }
 
+.func-btns li {
+  width: 25%;
+  color: #f50;
+  list-style: none;
+  padding: 5px;
+  box-sizing: border-box;
+  float: left; }
 
-
+.func-btns li a {
+  display: block;
+  width: 100%;
+  padding: 5px 0;
+  border: 1px solid #DDD;
+  text-align: center;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #333;
+  line-height: 18px; }

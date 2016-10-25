@@ -18,5 +18,13 @@
   "bugs": {
     "url": "https://github.com/ideayuye/graphic-math-function/issues"
   },
-  "homepage": "https://github.com/ideayuye/graphic-math-function#readme"
+  "homepage": "https://github.com/ideayuye/graphic-math-function#readme",
+  "dependencies": {
+    "autoprefixer-loader": "^3.2.0",
+    "css-loader": "^0.25.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-sass": "^2.3.2",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1"
+  }
 }

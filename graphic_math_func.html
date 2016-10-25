@@ -12,11 +12,12 @@
 <body>
 	<div id="input-panel">
 		<div class="formula-box">
-			<input type="text" name="" v-model="formula"  placeholder="请输入数学函数" v-on:change="changeFormula" > 
+			<label class="l-func">f(x)=</label>
+			<input id="input_formula" v-on:mousedown ="focusFunc" type="text" name="" v-model="formula"  placeholder="请输入数学函数" v-on:change="changeFormula" > 
 			<a href="javascript:;" class="i-help" v-on:click= "helpClick"></a>
 		</div>
 		<!--help组件-->
-		<div class='help' v-bind:class="{'hide':ishide}">
+		<div class='help ' v-bind:class="{'hide':ishide}">
 			<p>注：系统不能直接识别数学函数表达式，需要把部分运算符、函数替换为可识别函数</p>
 			<ul>
 				<li>1. 使用"x"代表变量</li>
@@ -28,8 +29,8 @@
 			</ul>
 		</div>
 		<!--可用函数面板-->
-		<ul class="func-btns">
-			<li v-for="item in funcBtns"> <a href="javascript:;">{{item.message}}</a></li>
+		<ul class="func-btns clearfix">
+			<li v-for="item in funcBtns"> <a href="javascript:;" v-on:click="funcBtnClick">{{item.message}}</a></li>
 		</ul>
 	</div>
     <p id="myCoords"></p>

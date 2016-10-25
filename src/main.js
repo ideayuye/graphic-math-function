@@ -56,6 +56,17 @@ function myInit() {
             helpClick :function(e){
                 e.stopPropagation();
                 this.ishide = !this.ishide;
+            },
+            focusFunc :function(e){
+/*                e.stopPropagation();
+                e.preventDefault();*/
+            },
+            funcBtnClick : function(e){
+                var symbolText = e.target.innerText;
+                //获取焦点位置
+                var formulaDom = document.getElementById('input_formula'); 
+                var focusIndex = formulaDom.selectionStart;
+                this.formula = this.formula.slice(0,focusIndex) + symbolText +this.formula.slice(focusIndex);
             }
         }
     });
