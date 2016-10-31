@@ -41,7 +41,8 @@ html, body {
 #input-panel .l-func {
   position: absolute;
   top: 11px;
-  left: 5px; }
+  left: 5px;
+  z-index: 1; }
 
 /*帮助面板*/
 .hide {
@@ -90,3 +91,52 @@ html, body {
   text-decoration: none;
   color: #333;
   line-height: 18px; }
+
+/*虚拟input*/
+.vir-input {
+  position: relative;
+  width: 100%;
+  padding: 4px 8px 4px 50px;
+  height: 28px;
+  background: #FFF;
+  border: 1px solid #DDD; }
+  .vir-input .v-cursor {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    display: inline-block;
+    border-left: 1px solid #333;
+    height: 20px;
+    width: 0;
+    margin-top: -10px;
+    -webkit-animation: flashing 1.5s infinite;
+    animation: flashing 1.5s infinite;
+    line-height: 28px; }
+  .vir-input .v-content {
+    margin: 0;
+    height: 28px;
+    line-height: 28px; }
+
+@-webkit-keyframes flashing {
+  0% {
+    opacity: 0; }
+  25% {
+    opacity: 0.5; }
+  50% {
+    opacity: 1; }
+  75% {
+    opacity: 0.5; }
+  100% {
+    opacity: 0; } }
+
+@keyframes flashing {
+  0% {
+    opacity: 0; }
+  25% {
+    opacity: 0.5; }
+  50% {
+    opacity: 1; }
+  75% {
+    opacity: 0.5; }
+  100% {
+    opacity: 0; } }

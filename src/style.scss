@@ -48,6 +48,7 @@ html,body{
     position: absolute;
     top: 11px;
     left: 5px;
+    z-index: 1;
 }
 
 /*帮助面板*/
@@ -88,4 +89,43 @@ html,body{
     border: 1px solid #DDD;text-align: center;border-radius: 3px;
     text-decoration: none;color: #333;line-height: 18px;
 }
+
+/*虚拟input*/
+.vir-input{
+    position: relative;
+    width: 100%;
+    padding: 4px 8px 4px 50px;
+    height: 28px;
+    background: #FFF;
+    border: 1px solid #DDD;
+
+    .v-cursor{
+        position: absolute;
+        left: 50px;
+        top: 50%;
+        display: inline-block;
+        border-left: 1px solid #333;
+        height: 20px;
+        width: 0;
+        margin-top: -10px;
+        animation: flashing 1.5s infinite;
+        line-height: 28px;
+    }
+
+    .v-content{
+        margin: 0;
+        height: 28px;
+        line-height: 28px;
+    }
+}
+
+
+@keyframes flashing{
+    0%{opacity: 0;}
+    25%{opacity: 0.5;}
+    50%{opacity: 1;}
+    75%{opacity: 0.5;}
+    100%{opacity: 0;}
+}
+
 

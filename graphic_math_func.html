@@ -10,10 +10,24 @@
 </head>
 
 <body>
+	<!--模板[[-->
+	<script type="text/html" id="tmpl_virsual_iput">
+		<div class="vir-input">
+			<i class="v-cursor"></i>
+			<p class="v-content" >{{content}}</p>
+		</div>
+	</script>
+	<!--]]模板-->
 	<div id="input-panel">
 		<div class="formula-box">
 			<label class="l-func">f(x)=</label>
-			<input id="input_formula" v-on:mousedown ="focusFunc" type="text" name="" v-model="formula"  placeholder="请输入数学函数" v-on:change="changeFormula" > 
+			<!--<input id="input_formula"  type="text" name="" 
+			v-model="formula"  placeholder="请输入数学函数" v-on:change="changeFormula" > -->
+			<!--虚拟input-->
+			<div class="vir-input">
+				<i class="v-cursor"></i>
+				<p class="v-content" >{{formula}}</p>
+			</div>
 			<a href="javascript:;" class="i-help" v-on:click= "helpClick"></a>
 		</div>
 		<!--help组件-->
@@ -38,6 +52,7 @@
 	<script type="text/javascript" src="src/vue.min.js"></script>
 	<script type="text/javascript" src="src/hammer.min.js"></script>
 	<script type="text/javascript" src="src/grapher.js"></script>
+    <script type="text/javascript" src="src/libs/VirsualInput.js"></script>
     <script type="text/javascript" src="src/main.js?v=2"></script>
 </body>
 </html>

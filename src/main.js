@@ -8,21 +8,18 @@ function myInit() {
     canvas.setAttribute('height', h);
     grapher = new Grapher();
 
-    /*Vue.component('help', {
-        template: "<div class='help' v-bind:class=\"{'hide':ishide}\">help conponent {{ishide}}</div>",
-        props:['ishide']
-    });*/
-
     var app = new Vue({
         el: '#input-panel',
         data: {
-            formula: '',
+            formula: 'sin(x)+1',
+            cursorIndex:0,
             ishide : true,
             funcBtns: [
                 { message: '*' },
                 { message: '/' },
                 { message: '+' },
                 { message: '-' },
+                { message: 'x' },
                 { message: 'sin' },
                 { message: 'cos' },
                 { message: 'log' },
@@ -33,8 +30,7 @@ function myInit() {
                 { message: 'sqrt' },
                 { message: 'tan' },
                 { message: 'asin' },
-                { message: 'acos' },
-                { message: 'atan' }
+                { message: 'acos' }
             ]
         },
         methods: {
@@ -57,19 +53,22 @@ function myInit() {
                 e.stopPropagation();
                 this.ishide = !this.ishide;
             },
-            focusFunc :function(e){
-/*                e.stopPropagation();
-                e.preventDefault();*/
-            },
             funcBtnClick : function(e){
                 var symbolText = e.target.innerText;
                 //获取焦点位置
-                var formulaDom = document.getElementById('input_formula'); 
+                /*var formulaDom = document.getElementById('input_formula'); 
                 var focusIndex = formulaDom.selectionStart;
-                this.formula = this.formula.slice(0,focusIndex) + symbolText +this.formula.slice(focusIndex);
+                this.formula = this.formula.slice(0,focusIndex) + symbolText +this.formula.slice(focusIndex);*/
+                this.formula += symbolText;
+                /*
+                *1.计算光标位置
+                *2.展示/隐藏光标 是否获得焦点
+                */
+
             }
         }
     });
+
 
     document.onclick = function(e){
         var help = document.querySelector('.help');
