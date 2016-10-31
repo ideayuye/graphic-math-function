@@ -115,7 +115,8 @@ html, body {
   .vir-input .v-content {
     margin: 0;
     height: 28px;
-    line-height: 28px; }
+    line-height: 28px;
+    font-size: 12px; }
 
 @-webkit-keyframes flashing {
   0% {

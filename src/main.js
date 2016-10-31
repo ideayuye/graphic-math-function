@@ -1,6 +1,8 @@
 
 var grapher = null;
 var canvas = document.getElementById('mainCanvas');
+var ctx = canvas.getContext('2d');
+
 function myInit() {
     var w = window.innerWidth;
     var h = window.innerHeight;
@@ -11,8 +13,9 @@ function myInit() {
     var app = new Vue({
         el: '#input-panel',
         data: {
-            formula: 'sin(x)+1',
+            formula: '',
             cursorIndex:0,
+            left:50,
             ishide : true,
             funcBtns: [
                 { message: '*' },
@@ -60,11 +63,17 @@ function myInit() {
                 var focusIndex = formulaDom.selectionStart;
                 this.formula = this.formula.slice(0,focusIndex) + symbolText +this.formula.slice(focusIndex);*/
                 this.formula += symbolText;
+                this.cursorIndex += symbolText.length;
+                ctx.font = "12px sans-serif";
+                var txtWidth = ctx.measureText(this.formula).width;
+                this.left = 50 + parseInt(txtWidth) + 1;
                 /*
-                *1.计算光标位置
+                *1.计算光标位置 o
                 *2.展示/隐藏光标 是否获得焦点
                 */
 
+                //刷新图形
+                this.changeFormula();
             }
         }
     });
