@@ -14,7 +14,7 @@ function myInit() {
         el: '#input-panel',
         data: {
             formula: '',
-            cursorIndex:0,
+            focusIndex:0,
             left:50,
             ishide : true,
             funcBtns: [
@@ -58,15 +58,14 @@ function myInit() {
             },
             funcBtnClick : function(e){
                 var symbolText = e.target.innerText;
-                //获取焦点位置
-                /*var formulaDom = document.getElementById('input_formula'); 
-                var focusIndex = formulaDom.selectionStart;
-                this.formula = this.formula.slice(0,focusIndex) + symbolText +this.formula.slice(focusIndex);*/
                 this.formula += symbolText;
-                this.cursorIndex += symbolText.length;
+                var focusIndex = this.focusIndex;
+                this.formula.slice(0,focusIndex) + symbolText + this.formula.slice(focusIndex);
+                this.focusIndex += symbolText.length;
                 ctx.font = "12px sans-serif";
                 var txtWidth = ctx.measureText(this.formula).width;
                 this.left = 50 + parseInt(txtWidth) + 1;
+                
                 /*
                 *1.计算光标位置 o
                 *2.展示/隐藏光标 是否获得焦点
@@ -74,10 +73,12 @@ function myInit() {
 
                 //刷新图形
                 this.changeFormula();
+            },
+            virInputClick:function(e){
+                console.log('end',e);
             }
         }
     });
-
 
     document.onclick = function(e){
         var help = document.querySelector('.help');

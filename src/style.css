@@ -40,7 +40,8 @@ html, body {
 
 #input-panel .l-func {
   position: absolute;
-  top: 11px;
+  font-size: 12px;
+  top: 13px;
   left: 5px;
   z-index: 1; }
 

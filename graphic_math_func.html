@@ -24,9 +24,9 @@
 			<!--<input id="input_formula"  type="text" name="" 
 			v-model="formula"  placeholder="请输入数学函数" v-on:change="changeFormula" > -->
 			<!--虚拟input-->
-			<div class="vir-input">
+			<div class="vir-input" >
 				<i class="v-cursor" v-bind:style="{left:left+'px'}"></i>
-				<p class="v-content" >{{formula}}</p>
+				<p class="v-content" v-on:click="virInputClick">{{formula}}</p>
 			</div>
 			<a href="javascript:;" class="i-help" v-on:click= "helpClick"></a>
 		</div>
