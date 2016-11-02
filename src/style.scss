@@ -15,15 +15,16 @@ html,body{
 }
 
 #input-panel{
+    height: 0;
+}
+
+#formula-box{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
 }
 
-#input-panel .formula-box{
-    position: relative;
-}
 
 #input-panel .formula-box .i-help{
     position: absolute;
@@ -54,7 +55,7 @@ html,body{
 
 /*帮助面板*/
 .hide{
-    display: none;
+    display: none !important;
 }
 
 .help{
@@ -78,11 +79,11 @@ html,body{
 }
 
 .func-btns{
-    padding: 0;background:#fff;margin: 0;
+    padding: 0;background:#fff;margin: 0;position: fixed;bottom: 0;left: 0;
 }
 
 .func-btns li{
-    width: 25%; color:#f50;list-style: none;padding: 5px;box-sizing: border-box;float: left;
+    width: 20%; color:#f50;list-style: none;padding: 5px;box-sizing: border-box;float: left;
 }
 
 .func-btns li a{
@@ -95,30 +96,28 @@ html,body{
 .vir-input{
     position: relative;
     width: 100%;
-    padding: 4px 8px 4px 50px;
-    height: 28px;
+    padding: 0 8px 0 40px;
+    height: 36px;
     background: #FFF;
     border: 1px solid #DDD;
 
-
     .v-cursor{
         position: absolute;
-        left: 50px;
+        left: 40px;
         top: 50%;
         display: inline-block;
         border-left: 1px solid #333;
         height: 20px;
         width: 0;
         margin-top: -10px;
-        animation: flashing 1.5s infinite;
-        line-height: 28px;
+        animation: flashing 1.0s infinite;
     }
 
     .v-content{
         margin: 0;
-        height: 28px;
-        line-height: 28px;
-        font-size: 12px;
+        font: 12px "sans-serif";
+        height: 100%;
+        line-height: 36px;
     }
 }
 

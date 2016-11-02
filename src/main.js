@@ -1,7 +1,33 @@
 
 var grapher = null;
 var canvas = document.getElementById('mainCanvas');
-var ctx = canvas.getContext('2d');
+
+//二分查找算法
+function binarySearch($array, $val) {
+    var $count = $array.length;
+    var $low = 0;
+    var $high = $count - 1;
+    while ($low <= $high) {//跳出条件
+        $mid = parseInt(($low + $high) / 2);
+        if ($array[$mid] <= $val && $array[$mid+1]>$val ) {
+            return $mid;
+        }
+        if ($array[$mid] < $val) {
+            $low = $mid + 1;
+        } else {
+            $high = $mid - 1;
+        }
+    }
+    return false;
+}
+
+//测量文本的宽度
+var cavsMeasure = document.createElement('canvas');
+var ctx = cavsMeasure.getContext('2d');
+function measureText(text){
+    ctx.font = "12px sans-serif";
+    return ctx.measureText(text).width;
+}
 
 function myInit() {
     var w = window.innerWidth;
@@ -14,27 +40,12 @@ function myInit() {
         el: '#input-panel',
         data: {
             formula: '',
+            ishide : true,
             focusIndex:0,
             left:50,
-            ishide : true,
-            funcBtns: [
-                { message: '*' },
-                { message: '/' },
-                { message: '+' },
-                { message: '-' },
-                { message: 'x' },
-                { message: 'sin' },
-                { message: 'cos' },
-                { message: 'log' },
-                { message: 'log2' },
-                { message: 'log10' },
-                { message: 'abs' },
-                { message: 'pow' },
-                { message: 'sqrt' },
-                { message: 'tan' },
-                { message: 'asin' },
-                { message: 'acos' }
-            ]
+            textWidths:[0],//每个长度对应的字符宽度
+            notfocus:1, //虚拟框是否获得焦点
+            keyboardHide:1
         },
         methods: {
             changeFormula: function () {
@@ -47,7 +58,7 @@ function myInit() {
                 } catch (e) {
                     isError = 1;
                 }
-                if (!isError) {
+                if (!isError && !isNaN(y)) {
                     grapher.formula = formula;
                     grapher.draw();
                 }
@@ -56,42 +67,68 @@ function myInit() {
                 e.stopPropagation();
                 this.ishide = !this.ishide;
             },
-            funcBtnClick : function(e){
-                var symbolText = e.target.innerText;
-                this.formula += symbolText;
-                var focusIndex = this.focusIndex;
-                this.formula.slice(0,focusIndex) + symbolText + this.formula.slice(focusIndex);
-                this.focusIndex += symbolText.length;
-                ctx.font = "12px sans-serif";
-                var txtWidth = ctx.measureText(this.formula).width;
-                this.left = 50 + parseInt(txtWidth) + 1;
-                
-                /*
-                *1.计算光标位置 o
-                *2.展示/隐藏光标 是否获得焦点
-                */
-
-                //刷新图形
-                this.changeFormula();
+            fixCursor:function(){
+                this.left = 40 + this.textWidths[this.focusIndex];
             },
             virInputClick:function(e){
-                console.log('end',e);
+                e.stopPropagation();
+                var touch = e.touches[0];
+                var dom = e.target;
+                var pageX = touch.pageX,
+                    pageY = touch.pageY;
+                var boundRect = dom.getBoundingClientRect();
+                var dx = pageX - boundRect.left;
+                //计算光标位置
+                var current = binarySearch(this.textWidths,dx);
+                current = current === false? this.formula.length:current;
+                this.focusIndex = current;
+                this.notfocus = 0;
+                this.fixCursor();
+                this.keyboardHide = 0;
+            }
+        },
+        events:{
+            'vir-enter':function(symbolText){
+                if(this.notfocus )
+                    return;
+                var focusIndex = this.focusIndex;
+                this.formula = this.formula.slice(0,focusIndex) + symbolText + this.formula.slice(focusIndex);
+                this.focusIndex += symbolText.length;
+                
+                //计算每个字符对应的宽度
+                this.textWidths=[0];
+                for(var i=1;i<=this.formula.length;i++){
+                    var txtWidth = measureText(this.formula.slice(0,i));
+                    this.textWidths.push(txtWidth);
+                }
+
+                this.fixCursor();
+                //刷新图形
+                this.changeFormula();
             }
         }
     });
 
-    document.onclick = function(e){
+    document.ontouchend = function(e){
         var help = document.querySelector('.help');
         if(!help.contains(e.target))
             app.ishide = true;
+        var inputContent = document.querySelector('.vir-input');
+        if(!inputContent.contains(e.target)){
+            app.notfocus = 1;
+            app.keyboardHide = 1;
+        }
     }
+
+    console.log(document.querySelector('.vir-input').style);
+    // alert(document.querySelector('.vir-input').style.font);
 }
 
 myInit();
 grapher.formula = "sin(x)";
 grapher.draw();
 
-//hammer test
+//hammer
 var hammer = new Hammer(canvas);
 hammer.get('pinch').set({ enable: true });
 

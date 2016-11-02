@@ -5,7 +5,8 @@
 	<title>graphic</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="src/normalize.css">
+    <meta name="wap-font-scale" content="no">
+	<link rel="stylesheet" type="text/css" href="src/normalize.css">
     <link rel="stylesheet" type="text/css" href="src/style.css">
 </head>
 
@@ -17,6 +18,11 @@
 			<p class="v-content" >{{content}}</p>
 		</div>
 	</script>
+	<script type="text/html" id="tmpl_keyboard">
+		<ul class="func-btns clearfix" v-bind:class="{'hide':ishide}">
+			<li v-for="item in funcBtns"> <a href="javascript:;" v-on:touchend="funcBtnClick">{{item.message}}</a></li>
+		</ul>
+	</script>
 	<!--]]模板-->
 	<div id="input-panel">
 		<div class="formula-box">
@@ -24,9 +30,9 @@
 			<!--<input id="input_formula"  type="text" name="" 
 			v-model="formula"  placeholder="请输入数学函数" v-on:change="changeFormula" > -->
 			<!--虚拟input-->
-			<div class="vir-input" >
-				<i class="v-cursor" v-bind:style="{left:left+'px'}"></i>
-				<p class="v-content" v-on:click="virInputClick">{{formula}}</p>
+			<div class="vir-input"  >
+				<i class="v-cursor" v-bind:style="{left:left+'px'}" v-bind:class="{'hide':notfocus}"></i>
+				<p class="v-content" v-on:touchstart="virInputClick">{{formula}}</p>
 			</div>
 			<a href="javascript:;" class="i-help" v-on:click= "helpClick"></a>
 		</div>
@@ -42,17 +48,15 @@
 				<li>6. log₂(x) => log2(x)</li>
 			</ul>
 		</div>
-		<!--可用函数面板-->
-		<ul class="func-btns clearfix">
-			<li v-for="item in funcBtns"> <a href="javascript:;" v-on:click="funcBtnClick">{{item.message}}</a></li>
-		</ul>
+		<!--输入面板-->
+		<keyboard v-bind:ishide='keyboardHide'></keyboard>
 	</div>
     <p id="myCoords"></p>
 	<canvas id="mainCanvas" width="500" height="500"></canvas>
 	<script type="text/javascript" src="src/vue.min.js"></script>
 	<script type="text/javascript" src="src/hammer.min.js"></script>
 	<script type="text/javascript" src="src/grapher.js"></script>
-    <script type="text/javascript" src="src/libs/VirsualInput.js"></script>
+    <script type="text/javascript" src="src/libs/Keyboard.js"></script>
     <script type="text/javascript" src="src/main.js?v=2"></script>
 </body>
 </html>
