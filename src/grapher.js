@@ -235,7 +235,7 @@ Grapher.prototype.mouseMove = function (e) {
         var x = this.mCx + 2.0 * this.mRx * ((mousex / this.mXres) - 0.5);
         var y = this.mCy - 2.0 * this.mRy * ((mousey / this.mYres) - 0.5);
         var n = this.getPrecision()
-        document.getElementById('myCoords').innerHTML = '(' + x.toFixed(n) + ', ' + y.toFixed(n) + ')';
+        // document.getElementById('myCoords').innerHTML = '(' + x.toFixed(n) + ', ' + y.toFixed(n) + ')';
     }
 
     if (this.mRangeType != 2) return;

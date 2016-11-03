@@ -20,7 +20,9 @@
 	</script>
 	<script type="text/html" id="tmpl_keyboard">
 		<ul class="func-btns clearfix" v-bind:class="{'hide':ishide}">
-			<li v-for="item in funcBtns"> <a href="javascript:;" v-on:touchend="funcBtnClick">{{item.message}}</a></li>
+			<li v-for="item in funcBtns"> 
+				<a href="javascript:;" v-on:touchend="funcBtnClick" data-value="{{item.value}}">{{item.message}}</a>
+			</li>
 		</ul>
 	</script>
 	<!--]]模板-->
@@ -32,7 +34,7 @@
 			<!--虚拟input-->
 			<div class="vir-input"  >
 				<i class="v-cursor" v-bind:style="{left:left+'px'}" v-bind:class="{'hide':notfocus}"></i>
-				<p class="v-content" v-on:touchstart="virInputClick">{{formula}}</p>
+				<div class="v-content" v-on:touchstart="virInputClick">{{formula}}</div>
 			</div>
 			<a href="javascript:;" class="i-help" v-on:click= "helpClick"></a>
 		</div>
@@ -51,7 +53,6 @@
 		<!--输入面板-->
 		<keyboard v-bind:ishide='keyboardHide'></keyboard>
 	</div>
-    <p id="myCoords"></p>
 	<canvas id="mainCanvas" width="500" height="500"></canvas>
 	<script type="text/javascript" src="src/vue.min.js"></script>
 	<script type="text/javascript" src="src/hammer.min.js"></script>

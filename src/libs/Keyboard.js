@@ -9,6 +9,16 @@ Vue.component('keyboard', {
     data:function(){
         return {
             funcBtns: [
+                { message: '0' ,value: '0'},
+                { message: '1' ,value: '1'},
+                { message: '2' ,value: '2'},
+                { message: '3' ,value: '3'},
+                { message: '4' ,value: '4'},
+                { message: '5' ,value: '5'},
+                { message: '6' ,value: '6'},
+                { message: '7' ,value: '7'},
+                { message: '8' ,value: '8'},
+                { message: '9' ,value: '9'},
                 { message: '*' ,value: '*'},
                 { message: '/' ,value: '/'},
                 { message: '+' ,value: '+'},
@@ -25,16 +35,26 @@ Vue.component('keyboard', {
                 { message: 'sqrt' ,value: 'sqrt'},
                 { message: 'tan' ,value: 'tan'},
                 { message: 'asin' ,value: 'asin'},
-                { message: 'acos' ,value: 'acos'}
+                { message: 'acos' ,value: 'acos'},
+                { message: 'atan' ,value: 'atan'},
+                { message: '(' ,value: '('},
+                { message: ')' ,value: ')'},
             ]
         }
     },
     methods:{
         funcBtnClick : function(e){
             e.stopPropagation();
-            var symbolText = e.target.innerText;
+            var symbolText = e.target.getAttribute('data-value');
             //触发输入按钮点击事件
-            this.$dispatch('vir-enter',symbolText);
+            switch(symbolText){
+                case "backspace":
+                    this.$dispatch('vir-backspace');
+                    break;
+                default:
+                    this.$dispatch('vir-enter',symbolText);
+            }
+            
         }
     }
 });

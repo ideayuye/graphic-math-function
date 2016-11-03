@@ -25,7 +25,9 @@ function binarySearch($array, $val) {
 var cavsMeasure = document.createElement('canvas');
 var ctx = cavsMeasure.getContext('2d');
 function measureText(text){
-    ctx.font = "12px sans-serif";
+    var inputc = document.querySelector('.v-content');
+    // ctx.font = "12px sans-serif";
+    ctx.font = window.getComputedStyle(inputc).font;
     return ctx.measureText(text).width;
 }
 
@@ -105,6 +107,12 @@ function myInit() {
                 this.fixCursor();
                 //刷新图形
                 this.changeFormula();
+            },
+            'vir-backspace':function(){
+                var focusIndex = this.focusIndex;
+                this.formula = this.formula.slice(0,focusIndex-1) + this.formula.slice(focusIndex);
+                this.focusIndex--;
+                this.fixCursor();
             }
         }
     });
@@ -119,9 +127,6 @@ function myInit() {
             app.keyboardHide = 1;
         }
     }
-
-    console.log(document.querySelector('.vir-input').style);
-    // alert(document.querySelector('.vir-input').style.font);
 }
 
 myInit();

@@ -40,7 +40,7 @@ html, body {
 
 #input-panel .l-func {
   position: absolute;
-  font-size: 12px;
+  font-size: 14px;
   top: 13px;
   left: 5px;
   z-index: 1; }
@@ -81,7 +81,7 @@ html, body {
   width: 20%;
   color: #f50;
   list-style: none;
-  padding: 5px;
+  padding: 2px;
   box-sizing: border-box;
   float: left; }
 
@@ -116,10 +116,9 @@ html, body {
     -webkit-animation: flashing 1.0s infinite;
     animation: flashing 1.0s infinite; }
   .vir-input .v-content {
-    margin: 0;
-    font: 12px "sans-serif";
     height: 100%;
-    line-height: 36px; }
+    margin: 0;
+    font: 14px/36px "sans-serif"; }
 
 @-webkit-keyframes flashing {
   0% {
