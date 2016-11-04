@@ -12,17 +12,18 @@
 
 <body>
 	<!--模板[[-->
-	<script type="text/html" id="tmpl_virsual_iput">
-		<div class="vir-input">
-			<i class="v-cursor"></i>
-			<p class="v-content" >{{content}}</p>
-		</div>
-	</script>
 	<script type="text/html" id="tmpl_keyboard">
-		<ul class="func-btns clearfix" v-bind:class="{'hide':ishide}">
-			<li v-for="item in funcBtns"> 
-				<a href="javascript:;" v-on:touchend="funcBtnClick" data-value="{{item.value}}">{{item.message}}</a>
-			</li>
+		<div class="func-btns clearfix" v-bind:class="{'hide':ishide}">
+			<ul class="l-operators">
+				<li v-for="item in operators">
+				<a  v-on:touchend="funcBtnClick" data-value="{{item.value}}">{{item.message}}</a>
+				</li>
+			</ul>
+			<ul class="r-keys">
+				<li v-for="item in funcBtns"> 
+					<a href="javascript:;" v-on:touchend="funcBtnClick" data-value="{{item.value}}">{{item.message}}</a>
+				</li>
+			</ul>
 		</ul>
 	</script>
 	<!--]]模板-->

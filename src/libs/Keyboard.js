@@ -19,13 +19,8 @@ Vue.component('keyboard', {
                 { message: '7' ,value: '7'},
                 { message: '8' ,value: '8'},
                 { message: '9' ,value: '9'},
-                { message: '*' ,value: '*'},
-                { message: '/' ,value: '/'},
-                { message: '+' ,value: '+'},
-                { message: '-' ,value: '-'},
-                { message: '<-' ,value: 'backspace'},
-                { message: 'x',value: 'x' },
-                { message: 'sin' ,value: 'sin'},
+                { message: '<=' ,value: 'backspace'},
+                /*{ message: 'sin' ,value: 'sin'},
                 { message: 'cos' ,value: 'cos'},
                 { message: 'log' ,value: 'log'},
                 { message: 'log2' ,value: 'log2'},
@@ -36,9 +31,16 @@ Vue.component('keyboard', {
                 { message: 'tan' ,value: 'tan'},
                 { message: 'asin' ,value: 'asin'},
                 { message: 'acos' ,value: 'acos'},
-                { message: 'atan' ,value: 'atan'},
+                { message: 'atan' ,value: 'atan'},*/
                 { message: '(' ,value: '('},
                 { message: ')' ,value: ')'},
+            ],
+            operators:[
+                { message: 'x',value: 'x' },
+                { message: '*' ,value: '*'},
+                { message: '/' ,value: '/'},
+                { message: '+' ,value: '+'},
+                { message: '-' ,value: '-'}
             ]
         }
     },
