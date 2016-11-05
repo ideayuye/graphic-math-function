@@ -6,6 +6,9 @@ ul {
   margin: 0;
   padding: 0; }
 
+li {
+  list-style: none; }
+
 #mainCanvas {
   width: 100%;
   height: 100%; }
@@ -45,7 +48,7 @@ ul {
 #input-panel .l-func {
   position: absolute;
   font-size: 14px;
-  top: 13px;
+  top: 12px;
   left: 5px;
   z-index: 1; }
 
@@ -60,12 +63,8 @@ ul {
   width: 90%;
   margin: 10px auto;
   font: 12px "Microsoft YaHei"; }
-
-.help ul {
-  padding-left: 12px; }
-
-.help li {
-  list-style: none; }
+  .help ul {
+    padding-left: 12px; }
 
 /*可选函数按钮面板*/
 .clearfix:after {
@@ -73,58 +72,64 @@ ul {
   clear: both;
   display: block; }
 
-.func-btns {
-  padding: 0;
-  background: #fff;
-  margin: 0;
+.keyboard-panel {
   position: fixed;
   bottom: 0;
   left: 0;
-  display: -webkit-box;
+  width: 100%; }
+  .keyboard-panel .menu-row {
+    height: 45px;
+    width: 100%;
+    background: #FFF; }
+
+.func-btns {
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
-  padding: 5px 0; }
+  display: -webkit-box;
+  padding: 5px 0 0;
+  background: #ccd9e2; }
+  .func-btns .flex-item {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1; }
 
 .func-btns .l-operators {
-  -webkit-box-flex: 1;
-  -ms-flex: 1 1 15%;
-  flex: 1 1 15%;
-  margin: 0 5px;
+  margin: 0 5px 5px;
   border: 1px solid #DDD;
-  border-radius: 3px; }
-  .func-btns .l-operators li {
-    list-style: none; }
-  .func-btns .l-operators li a {
-    display: block;
-    margin: 5px;
-    border-radius: 3px;
-    color: #333;
-    line-height: 24px;
-    text-align: center;
-    border-bottom: 1px solid #DDD; }
-  .func-btns .l-operators li a:last-child {
+  border-radius: 3px;
+  -ms-flex-preferred-size: 15%;
+  flex-basis: 15%;
+  background: #FFF; }
+  .func-btns .l-operators .i-t {
+    display: block; }
+    .func-btns .l-operators .i-t a {
+      display: block;
+      margin: 4px 5px;
+      color: #222;
+      line-height: 28px;
+      text-align: center;
+      border-bottom: 1px solid #DDD; }
+  .func-btns .l-operators .i-t:last-child a {
     border-bottom: none; }
 
 .func-btns .r-keys {
-  -webkit-box-flex: 1;
-  -ms-flex: 1 1 85%;
-  flex: 1 1 85%; }
-  .func-btns .r-keys li {
+  -ms-flex-preferred-size: 85%;
+  flex-basis: 85%; }
+  .func-btns .r-keys .i-t {
     width: 25%;
-    color: #f50;
-    list-style: none;
-    box-sizing: border-box;
-    float: left; }
-  .func-btns .r-keys li a {
-    display: block;
-    border: 1px solid #DDD;
-    margin: 0 5px 5px 0;
-    text-align: center;
-    border-radius: 3px;
-    text-decoration: none;
-    color: #333;
-    line-height: 18px; }
+    float: left;
+    box-sizing: border-box; }
+    .func-btns .r-keys .i-t a {
+      display: block;
+      border: 1px solid #DDD;
+      background: #fff;
+      text-align: center;
+      border-radius: 3px;
+      text-decoration: none;
+      color: #222;
+      line-height: 40px; }
 
 /*虚拟input*/
 .vir-input {

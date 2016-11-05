@@ -9,20 +9,19 @@ Vue.component('keyboard', {
     data:function(){
         return {
             funcBtns: [
-                { message: '0' ,value: '0'},
                 { message: '1' ,value: '1'},
                 { message: '2' ,value: '2'},
                 { message: '3' ,value: '3'},
+                { message: '<=' ,value: 'backspace'},
                 { message: '4' ,value: '4'},
                 { message: '5' ,value: '5'},
                 { message: '6' ,value: '6'},
+                { message: 'sin' ,value: 'sin'},
                 { message: '7' ,value: '7'},
                 { message: '8' ,value: '8'},
                 { message: '9' ,value: '9'},
-                { message: '<=' ,value: 'backspace'},
-                /*{ message: 'sin' ,value: 'sin'},
                 { message: 'cos' ,value: 'cos'},
-                { message: 'log' ,value: 'log'},
+                /*{ message: 'log' ,value: 'log'},
                 { message: 'log2' ,value: 'log2'},
                 { message: 'log10' ,value: 'log10'},
                 { message: 'abs' ,value: 'abs'},
@@ -33,7 +32,9 @@ Vue.component('keyboard', {
                 { message: 'acos' ,value: 'acos'},
                 { message: 'atan' ,value: 'atan'},*/
                 { message: '(' ,value: '('},
+                { message: '0' ,value: '0'},
                 { message: ')' ,value: ')'},
+                { message: 'funs' ,value: 'funs'},
             ],
             operators:[
                 { message: 'x',value: 'x' },
@@ -56,7 +57,6 @@ Vue.component('keyboard', {
                 default:
                     this.$dispatch('vir-enter',symbolText);
             }
-            
         }
     }
 });

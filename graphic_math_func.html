@@ -1,30 +1,36 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>graphic</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta name="wap-font-scale" content="no">
+	<meta name="wap-font-scale" content="no">
 	<link rel="stylesheet" type="text/css" href="src/normalize.css">
-    <link rel="stylesheet" type="text/css" href="src/style.css">
+	<link rel="stylesheet" type="text/css" href="src/style.css">
 </head>
 
 <body>
 	<!--模板[[-->
 	<script type="text/html" id="tmpl_keyboard">
-		<div class="func-btns clearfix" v-bind:class="{'hide':ishide}">
-			<ul class="l-operators">
-				<li v-for="item in operators">
-				<a  v-on:touchend="funcBtnClick" data-value="{{item.value}}">{{item.message}}</a>
-				</li>
-			</ul>
-			<ul class="r-keys">
-				<li v-for="item in funcBtns"> 
+	<div class="keyboard-panel" v-bind:class="{'hide':ishide}">
+		<div class="menu-row">
+			
+		</div>
+		<div class="func-btns " >
+			<div class="l-operators flex-item">
+				<div class="i-t" v-for="item in operators">
+					<a v-on:touchend="funcBtnClick" data-value="{{item.value}}">{{item.message}}</a>
+				</div>
+			</div>
+			<div class="r-keys clearfix flex-item">
+				<div class="i-t" v-for="item in funcBtns">
 					<a href="javascript:;" v-on:touchend="funcBtnClick" data-value="{{item.value}}">{{item.message}}</a>
-				</li>
-			</ul>
-		</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+		
 	</script>
 	<!--]]模板-->
 	<div id="input-panel">
@@ -33,11 +39,11 @@
 			<!--<input id="input_formula"  type="text" name="" 
 			v-model="formula"  placeholder="请输入数学函数" v-on:change="changeFormula" > -->
 			<!--虚拟input-->
-			<div class="vir-input"  >
+			<div class="vir-input">
 				<i class="v-cursor" v-bind:style="{left:left+'px'}" v-bind:class="{'hide':notfocus}"></i>
 				<div class="v-content" v-on:touchstart="virInputClick">{{formula}}</div>
 			</div>
-			<a href="javascript:;" class="i-help" v-on:click= "helpClick"></a>
+			<a href="javascript:;" class="i-help" v-on:click="helpClick"></a>
 		</div>
 		<!--help组件-->
 		<div class='help ' v-bind:class="{'hide':ishide}">
@@ -58,7 +64,8 @@
 	<script type="text/javascript" src="src/vue.min.js"></script>
 	<script type="text/javascript" src="src/hammer.min.js"></script>
 	<script type="text/javascript" src="src/grapher.js"></script>
-    <script type="text/javascript" src="src/libs/Keyboard.js"></script>
-    <script type="text/javascript" src="src/main.js?v=2"></script>
+	<script type="text/javascript" src="src/libs/Keyboard.js"></script>
+	<script type="text/javascript" src="src/main.js?v=2"></script>
 </body>
+
 </html>

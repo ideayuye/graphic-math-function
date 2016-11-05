@@ -1,8 +1,11 @@
 
+
+$designWidth : 750;
+
 @function px2rem( $px ){
 	@return $px*320/$designWidth/20 + rem;
 }
-$designWidth : 750;
+
 
 html,body{
     height: 100%;
@@ -11,6 +14,10 @@ html,body{
 ul{
     margin: 0 ;
     padding: 0;
+}
+
+li {
+    list-style: none;
 }
 
 
@@ -36,7 +43,6 @@ ul{
     width: 100%;
 }
 
-
 #input-panel .formula-box .i-help{
     position: absolute;
     right: 5px;
@@ -59,7 +65,7 @@ ul{
 #input-panel  .l-func{
     position: absolute;
     font-size: 14px;
-    top: 13px;
+    top: 12px;
     left: 5px;
     z-index: 1;
 }
@@ -72,15 +78,11 @@ ul{
 .help{
     color: #666;background: #FFF;padding: 6px 10px;width: 90%; margin: 10px auto;
     font: 12px "Microsoft YaHei";
-}
-.help ul{
-    padding-left: 12px;
-}
 
-.help li {
-    list-style: none;
+    ul{
+        padding-left: 12px;
+    }
 }
-
 
 /*可选函数按钮面板*/
 .clearfix:after{
@@ -89,52 +91,73 @@ ul{
     display: block;
 }
 
+.keyboard-panel{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    .menu-row{
+        height: 45px;
+        width: 100%;
+        background: #FFF;
+    }
+}
+
 .func-btns{
-    padding: 0;background:#fff;margin: 0;position: fixed;bottom: 0;left: 0;
-    display: flex;width: 100%;padding: 5px 0;
+    display: -webkit-flex;
+    display: flex;
+    display: -webkit-box;
+    padding: 5px 0 0;
+    background: #ccd9e2;
+
+    .flex-item{
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
 }
 
 .func-btns .l-operators{
-    flex: 1 1 15%;
-    margin: 0 5px;
+    margin: 0 5px 5px;
     border: 1px solid #DDD;
     border-radius: 3px;
+    flex-basis: 15%;
+    background: #FFF;
 
-    li{
-        list-style: none;
-    }
+    .i-t {
+        display: block;
 
-    li {
         a{
-            display: block;margin: 5px;
-            border-radius: 3px;color: #333;line-height: 24px;
+            display: block;
+            margin: 4px 5px;
+            color: #222;
+            line-height: 28px;
             text-align: center;
             border-bottom: 1px solid #DDD;
         }
-    
-        a:last-child{
-            border-bottom: none;
-        }
+    }
+
+    .i-t:last-child a{
+        border-bottom: none;
     }
 }
 
 .func-btns .r-keys{
-    flex: 1 1 85%;
+    flex-basis: 85%;
     
-    li{
-        width: 25%; color:#f50;list-style: none;
-        box-sizing: border-box;float: left;
-    }
+    .i-t {
+        width: 25%;
+        float: left;
+        box-sizing: border-box;
 
-    li {
         a{
             display: block;
             border: 1px solid #DDD;
-            margin: 0 5px 5px 0;
+            background: #fff;
             text-align: center;border-radius: 3px;
-            text-decoration: none;color: #333;line-height: 18px;
+            text-decoration: none;color: #222;
+            line-height: 40px;
         }
-
     }
 } 
 
