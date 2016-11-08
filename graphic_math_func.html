@@ -14,9 +14,10 @@
 	<!--模板[[-->
 	<script type="text/html" id="tmpl_keyboard">
 	<div class="keyboard-panel" v-bind:class="{'hide':ishide}">
-		<div class="menu-row">
-			
-		</div>
+		<ul class="menu-row">
+			<li class="k-help"><a href="javascript:;" class="i-help" v-on:click="helpClick"></a></li>
+			<li class="k-back"><a href="javascript:;" v-on:click="mBack"></a></li>
+		</ul>
 		<div class="func-btns " >
 			<div class="l-operators flex-item">
 				<div class="i-t" v-for="item in operators">
@@ -43,7 +44,7 @@
 				<i class="v-cursor" v-bind:style="{left:left+'px'}" v-bind:class="{'hide':notfocus}"></i>
 				<div class="v-content" v-on:touchstart="virInputClick">{{formula}}</div>
 			</div>
-			<a href="javascript:;" class="i-help" v-on:click="helpClick"></a>
+			
 		</div>
 		<!--help组件-->
 		<div class='help ' v-bind:class="{'hide':ishide}">

@@ -113,6 +113,9 @@ function myInit() {
                 this.formula = this.formula.slice(0,focusIndex-1) + this.formula.slice(focusIndex);
                 this.focusIndex--;
                 this.fixCursor();
+            },
+            'vir-back':function(){
+                this.notfocus = 1;
             }
         }
     });
@@ -122,7 +125,8 @@ function myInit() {
         if(!help.contains(e.target))
             app.ishide = true;
         var inputContent = document.querySelector('.vir-input');
-        if(!inputContent.contains(e.target)){
+        var keyboard = document.querySelector('.keyboard-panel');
+        if(!inputContent.contains(e.target) && !keyboard.contains(e.target)){
             app.notfocus = 1;
             app.keyboardHide = 1;
         }

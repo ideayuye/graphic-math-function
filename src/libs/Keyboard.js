@@ -57,6 +57,10 @@ Vue.component('keyboard', {
                 default:
                     this.$dispatch('vir-enter',symbolText);
             }
+        },
+        mBack:function(){
+            this.ishide = !this.ishide;
+            this.$dispatch('vir-back');
         }
     }
 });

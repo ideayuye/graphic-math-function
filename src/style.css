@@ -28,17 +28,6 @@ li {
   left: 0;
   width: 100%; }
 
-#input-panel .formula-box .i-help {
-  position: absolute;
-  right: 5px;
-  top: 6px;
-  display: block;
-  width: 28px;
-  height: 28px;
-  background: url(images/question.svg);
-  background-size: cover;
-  color: #f50; }
-
 #input-panel input {
   display: block;
   width: 100%;
@@ -80,7 +69,34 @@ li {
   .keyboard-panel .menu-row {
     height: 45px;
     width: 100%;
-    background: #FFF; }
+    padding: 0 10px;
+    background: #FFF;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    /*键盘帮助*/
+    /*收起键盘*/ }
+    .keyboard-panel .menu-row li {
+      width: 28px;
+      height: 28px;
+      padding: 6px 10px;
+      /*flex: 1 1 auto;
+            -webkit-box-flex: 1 1 auto;*/ }
+    .keyboard-panel .menu-row .i-help {
+      display: block;
+      width: 28px;
+      height: 28px;
+      background: url(images/question.svg);
+      background-size: cover;
+      color: #f50; }
+    .keyboard-panel .menu-row .k-back a {
+      display: block;
+      height: 100%;
+      background: url(images/down_arrow.svg);
+      background-size: cover; }
 
 .func-btns {
   display: -ms-flexbox;
@@ -124,6 +140,7 @@ li {
     .func-btns .r-keys .i-t a {
       display: block;
       border: 1px solid #DDD;
+      margin: 0 1px 1px 0;
       background: #fff;
       text-align: center;
       border-radius: 3px;

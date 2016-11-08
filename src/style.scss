@@ -43,18 +43,6 @@ li {
     width: 100%;
 }
 
-#input-panel .formula-box .i-help{
-    position: absolute;
-    right: 5px;
-    top: 6px;
-    display: block;
-    width: 28px;
-    height: 28px;
-    background: url(images/question.svg);
-    background-size: cover;
-    color: #f50;
-}
-
 #input-panel input{
     display: block;
     width: 100%;
@@ -100,7 +88,42 @@ li {
     .menu-row{
         height: 45px;
         width: 100%;
+        padding: 0 10px;
         background: #FFF;
+        box-sizing: border-box;
+        display: -webkit-box;
+        display: flex;
+        justify-content: space-around;
+
+        li{
+            width: 28px;
+            height: 28px;
+            padding: 6px 10px;
+            /*flex: 1 1 auto;
+            -webkit-box-flex: 1 1 auto;*/
+            
+        }
+
+        /*键盘帮助*/
+        .i-help{
+            display: block;
+            width: 28px;
+            height: 28px;
+            background: url(images/question.svg);
+            background-size: cover;
+            color: #f50;
+        }
+
+        /*收起键盘*/
+        .k-back{
+        
+            a{
+                display: block;
+                height: 100%;
+                background: url(images/down_arrow.svg);
+                background-size: cover;
+            }
+        }
     }
 }
 
@@ -153,6 +176,7 @@ li {
         a{
             display: block;
             border: 1px solid #DDD;
+            margin: 0 1px 1px 0;
             background: #fff;
             text-align: center;border-radius: 3px;
             text-decoration: none;color: #222;
