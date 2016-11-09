@@ -30,12 +30,7 @@ function Grapher() {
     this.mShowAxes = true;
     this.mShowGuides = true;
 
-    var me = this;
-    // 桌面端
-    this.mCanvas.onmousedown = function (ev) { me.mouseDown(ev); }
-    this.mCanvas.onmousemove = function (ev) { me.mouseMove(ev); }
-    this.mCanvas.onmouseup = function (ev) { me.mouseUp(ev); }
-    this.mCanvas.onmouseout = function (ev) { me.mouseUp(ev); }
+
 
     this.formula = "x";
     this.draw();
@@ -171,14 +166,6 @@ Grapher.prototype.draw = function (id) {
 
     this.drawGraph(this.formula, '#a0ffc0');
 
-    // graphs
-    /*if( document.getElementById('draw1').checked ) { var formula1 = document.getElementById('formula1').value; if (this.notOnBlackList(formula1) == true) this.drawGraph(formula1,'#ffc040'); }
-    if( document.getElementById('draw2').checked ) { var formula2 = document.getElementById('formula2').value; if (this.notOnBlackList(formula2) == true) this.drawGraph(formula2,'#ffffa0'); }
-    if( document.getElementById('draw3').checked ) { var formula3 = document.getElementById('formula3').value; if (this.notOnBlackList(formula3) == true) this.drawGraph(formula3,'#a0ffc0'); }
-    if( document.getElementById('draw4').checked ) { var formula4 = document.getElementById('formula4').value; if (this.notOnBlackList(formula4) == true) this.drawGraph(formula4,'#40c0ff'); }
-    if( document.getElementById('draw5').checked ) { var formula5 = document.getElementById('formula5').value; if (this.notOnBlackList(formula5) == true) this.drawGraph(formula5,'#d0a0ff'); }
-    if( document.getElementById('draw6').checked ) { var formula6 = document.getElementById('formula6').value; if (this.notOnBlackList(formula6) == true) this.drawGraph(formula6,'#ff80c0'); }
-*/
     // guides
     if (this.mShowGuides) {
         ctx.strokeStyle = '#FFFFFF';
@@ -254,10 +241,14 @@ Grapher.prototype.mouseMove = function (e) {
 }
 
 //移动端 pan
+Grapher.prototype.touchstart = function(){
+    this.mRefCx = this.mCx;
+    this.mRefCy = this.mCy;
+}
 Grapher.prototype.mPan = function(ev){
     var dx = ev.deltaX,dy = ev.deltaY;
-    this.mCx = - dx * 2.0 * this.mRx / this.mXres;
-    this.mCy = + dy * 2.0 * this.mRy / this.mYres;
+    this.mCx = this.mRefCx - dx * 2.0 * this.mRx / this.mXres;
+    this.mCy = this.mRefCy + dy * 2.0 * this.mRy / this.mYres;
     this.draw();
 }
 

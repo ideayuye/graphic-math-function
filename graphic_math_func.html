@@ -15,6 +15,7 @@
 	<script type="text/html" id="tmpl_keyboard">
 	<div class="keyboard-panel" v-bind:class="{'hide':ishide}">
 		<ul class="menu-row">
+			<li class="k-fn"><a href="javascript:;" ></a></li>
 			<li class="k-help"><a href="javascript:;" class="i-help" v-on:click="helpClick"></a></li>
 			<li class="k-back"><a href="javascript:;" v-on:click="mBack"></a></li>
 		</ul>
@@ -64,6 +65,7 @@
 	<canvas id="mainCanvas" width="500" height="500"></canvas>
 	<script type="text/javascript" src="src/vue.min.js"></script>
 	<script type="text/javascript" src="src/hammer.min.js"></script>
+	<script type="text/javascript" src="src/libs/detector.js"></script>
 	<script type="text/javascript" src="src/grapher.js"></script>
 	<script type="text/javascript" src="src/libs/Keyboard.js"></script>
 	<script type="text/javascript" src="src/main.js?v=2"></script>

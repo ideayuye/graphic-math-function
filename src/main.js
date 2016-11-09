@@ -1,6 +1,8 @@
 
 var grapher = null;
 var canvas = document.getElementById('mainCanvas');
+//判断平台
+var isMobile = isMobile();
 
 //二分查找算法
 function binarySearch($array, $val) {
@@ -31,7 +33,8 @@ function measureText(text){
     return ctx.measureText(text).width;
 }
 
-function myInit() {
+
+function myInit () {
     var w = window.innerWidth;
     var h = window.innerHeight;
     canvas.setAttribute('width', w);
@@ -133,23 +136,45 @@ function myInit() {
     }
 }
 
-myInit();
-grapher.formula = "sin(x)";
-grapher.draw();
 
-//hammer
-var hammer = new Hammer(canvas);
-hammer.get('pinch').set({ enable: true });
+//绑定鼠标事件
+function bindMouseEvent() {
+    if (isMobile) {
+        //hammer
+        var hammer = new Hammer(canvas);
+        
+        hammer.get('pinch').set({ enable: true });
 
-hammer.on('pan', function (ev) {
-    grapher.mPan(ev);
-});
+        hammer.on('panstart',function(ev){
+            grapher.touchstart(ev);
+        });
 
-hammer.on('pinchstart', function (ev) {
-    grapher.mScaleStart();
-});
+        hammer.on('pan', function (ev) {
+            grapher.mPan(ev);
+        });
 
-hammer.on('pinch', function (ev) {
-    grapher.mScale(ev);
-});
+        hammer.on('pinchstart', function (ev) {
+            grapher.mScaleStart();
+        });
+
+        hammer.on('pinch', function (ev) {
+            grapher.mScale(ev);
+        });
+    } else {
+        var me = grapher;
+        // 桌面端
+        canvas.onmousedown = function (ev) { me.mouseDown(ev); }
+        canvas.onmousemove = function (ev) { me.mouseMove(ev); }
+        canvas.onmouseup = function (ev) { me.mouseUp(ev); }
+        canvas.onmouseout = function (ev) { me.mouseUp(ev); }
+    }
+}
+
+!function(){
+    myInit();
+    bindMouseEvent();
+    grapher.formula = "sin(x)";
+    grapher.draw();
+}();
+
 

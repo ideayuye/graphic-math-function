@@ -101,27 +101,33 @@ li {
             padding: 6px 10px;
             /*flex: 1 1 auto;
             -webkit-box-flex: 1 1 auto;*/
-            
+
+            a{
+                display: block;
+                height: 100%;
+                background-size: cover;
+            }
+        }
+        
+        /*fn*/
+        .k-fn{
+            a{
+                background-image: url(images/fn.svg);
+            }    
         }
 
+
         /*键盘帮助*/
-        .i-help{
-            display: block;
-            width: 28px;
-            height: 28px;
-            background: url(images/question.svg);
-            background-size: cover;
-            color: #f50;
+        .k-help{
+            .i-help{
+                background-image: url(images/question.svg);
+            }
         }
 
         /*收起键盘*/
         .k-back{
-        
             a{
-                display: block;
-                height: 100%;
-                background: url(images/down_arrow.svg);
-                background-size: cover;
+                background-image: url(images/down_arrow.svg);
             }
         }
     }

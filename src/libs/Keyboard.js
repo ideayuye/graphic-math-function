@@ -34,10 +34,10 @@ Vue.component('keyboard', {
                 { message: '(' ,value: '('},
                 { message: '0' ,value: '0'},
                 { message: ')' ,value: ')'},
-                { message: 'funs' ,value: 'funs'},
+                { message: 'x' ,value: 'x'},
             ],
             operators:[
-                { message: 'x',value: 'x' },
+                { message: '.',value: '.' },
                 { message: '*' ,value: '*'},
                 { message: '/' ,value: '/'},
                 { message: '+' ,value: '+'},
