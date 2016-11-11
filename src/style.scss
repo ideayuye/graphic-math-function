@@ -86,25 +86,31 @@ li {
     width: 100%;
 
     .menu-row{
-        height: 45px;
+        height: 44px;
         width: 100%;
         padding: 0 10px;
         background: #FFF;
         box-sizing: border-box;
         display: -webkit-box;
         display: flex;
+
         justify-content: space-around;
 
         li{
-            width: 28px;
-            height: 28px;
-            padding: 6px 10px;
-            /*flex: 1 1 auto;
-            -webkit-box-flex: 1 1 auto;*/
+            -webkit-box-flex: 1 ;
+            flex: 1 ;
+            position: relative;
+            height: 100%;
 
             a{
+                position: absolute;
+                top: 50%;
+                margin-top: -14px;
+                left: 50%;
+                margin-left: -14px;
                 display: block;
-                height: 100%;
+                width: 28px;
+                height: 28px;
                 background-size: cover;
             }
         }
@@ -115,7 +121,6 @@ li {
                 background-image: url(images/fn.svg);
             }    
         }
-
 
         /*键盘帮助*/
         .k-help{
@@ -131,6 +136,17 @@ li {
             }
         }
     }
+
+    #fx-panel{
+        display: none;
+    }
+
+    #fx-panel:target{
+        display: block;
+        z-index: 1;
+    }
+
+
 }
 
 .func-btns{
@@ -200,6 +216,7 @@ li {
     height: 36px;
     background: #FFF;
     border: 1px solid #DDD;
+    box-sizing: border-box;
 
     .v-cursor{
         position: absolute;

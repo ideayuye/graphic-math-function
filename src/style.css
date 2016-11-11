@@ -67,7 +67,7 @@ li {
   left: 0;
   width: 100%; }
   .keyboard-panel .menu-row {
-    height: 45px;
+    height: 44px;
     width: 100%;
     padding: 0 10px;
     background: #FFF;
@@ -81,14 +81,20 @@ li {
     /*键盘帮助*/
     /*收起键盘*/ }
     .keyboard-panel .menu-row li {
-      width: 28px;
-      height: 28px;
-      padding: 6px 10px;
-      /*flex: 1 1 auto;
-            -webkit-box-flex: 1 1 auto;*/ }
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      position: relative;
+      height: 100%; }
       .keyboard-panel .menu-row li a {
+        position: absolute;
+        top: 50%;
+        margin-top: -14px;
+        left: 50%;
+        margin-left: -14px;
         display: block;
-        height: 100%;
+        width: 28px;
+        height: 28px;
         background-size: cover; }
     .keyboard-panel .menu-row .k-fn a {
       background-image: url(images/fn.svg); }
@@ -96,6 +102,11 @@ li {
       background-image: url(images/question.svg); }
     .keyboard-panel .menu-row .k-back a {
       background-image: url(images/down_arrow.svg); }
+  .keyboard-panel #fx-panel {
+    display: none; }
+  .keyboard-panel #fx-panel:target {
+    display: block;
+    z-index: 1; }
 
 .func-btns {
   display: -ms-flexbox;
@@ -154,7 +165,8 @@ li {
   padding: 0 8px 0 40px;
   height: 36px;
   background: #FFF;
-  border: 1px solid #DDD; }
+  border: 1px solid #DDD;
+  box-sizing: border-box; }
   .vir-input .v-cursor {
     position: absolute;
     left: 40px;
