@@ -91,16 +91,17 @@ li {
         padding: 0 10px;
         background: #FFF;
         box-sizing: border-box;
-        display: -webkit-box;
         display: flex;
-
         justify-content: space-around;
 
+
         li{
-            -webkit-box-flex: 1 ;
-            flex: 1 ;
+            /*-webkit-box-flex: 1 ;*/
+            /*flex: 1 ;*/
             position: relative;
-            height: 100%;
+            width: 28px;
+            height: 28px;
+            padding: 8px;
 
             a{
                 position: absolute;
@@ -137,22 +138,12 @@ li {
         }
     }
 
-    #fx-panel{
-        display: none;
-    }
-
-    #fx-panel:target{
-        display: block;
-        z-index: 1;
-    }
-
-
 }
 
-.func-btns{
-    display: -webkit-flex;
-    display: flex;
+.func-btns{  
     display: -webkit-box;
+    display: flex;
+
     padding: 5px 0 0;
     background: #ccd9e2;
 
@@ -233,7 +224,9 @@ li {
     .v-content{
         height: 100%;
         margin: 0;
-        font: 14px/36px "sans-serif";
+        /*font-size: 14px;
+        line-height: 36px;*/
+        font: 14px/36px "SimSun";
     }
 }
 

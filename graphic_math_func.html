@@ -15,13 +15,13 @@
 	<script type="text/html" id="tmpl_keyboard">
 	<div class="keyboard-panel" v-bind:class="{'hide':ishide}">
 		<ul class="menu-row">
-			<li class="k-fn"><a href="#fx-panel" ></a></li>
+			<li class="k-fn" v-on:click="fxClick"><a href="#fx-panel" ></a></li>
 			<li class="k-help"><a href="javascript:;" class="i-help" v-on:click="helpClick"></a></li>
 			<li class="k-back"><a href="javascript:;" v-on:click="mBack"></a></li>
 		</ul>
-		<div class="func-btns " id="num-panel">
+		<div class="func-btns " id="num-panel" v-bind:class="{'hide':numPanelHide}">
 			<div class="l-operators flex-item">
-				<div class="i-t" v-for="item in operators">
+				<div class="i-t" v-for="item in operators" >
 					<a v-on:touchend="funcBtnClick" data-value="{{item.value}}">{{item.message}}</a>
 				</div>
 			</div>
@@ -31,8 +31,17 @@
 				</div>
 			</div>
 		</div>
-		<div class="func-btns " id="fx-panel" >
-			<p>ttttt</p>
+		<div class="func-btns " id="fx-panel"  v-bind:class="{'hide':fxPanelHide}">
+			<div class="l-operators flex-item">
+				<div class="i-t" v-for="item in operators" >
+					<a v-on:touchend="funcBtnClick" data-value="{{item.value}}">{{item.message}}</a>
+				</div>
+			</div>
+			<div class="r-keys clearfix flex-item">
+				<div class="i-t" v-for="item in fxBtns">
+					<a href="javascript:;" v-on:touchend="funcBtnClick" data-value="{{item.value}}">{{item.message}}</a>
+				</div>
+			</div>
 		</div>
 	</div>
 		

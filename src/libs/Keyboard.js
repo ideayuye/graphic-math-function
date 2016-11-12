@@ -20,17 +20,7 @@ Vue.component('keyboard', {
                 { message: '7' ,value: '7'},
                 { message: '8' ,value: '8'},
                 { message: '9' ,value: '9'},
-                { message: 'cos' ,value: 'cos'},
-                /*{ message: 'log' ,value: 'log'},
-                { message: 'log2' ,value: 'log2'},
-                { message: 'log10' ,value: 'log10'},
-                { message: 'abs' ,value: 'abs'},
-                { message: 'pow' ,value: 'pow'},
-                { message: 'sqrt' ,value: 'sqrt'},
-                { message: 'tan' ,value: 'tan'},
-                { message: 'asin' ,value: 'asin'},
-                { message: 'acos' ,value: 'acos'},
-                { message: 'atan' ,value: 'atan'},*/
+                { message: '*x' ,value: '*x'},
                 { message: '(' ,value: '('},
                 { message: '0' ,value: '0'},
                 { message: ')' ,value: ')'},
@@ -42,6 +32,22 @@ Vue.component('keyboard', {
                 { message: '/' ,value: '/'},
                 { message: '+' ,value: '+'},
                 { message: '-' ,value: '-'}
+            ],
+            numPanelHide:0,
+            fxPanelHide:1,
+            fxBtns:[
+                { message: 'cos' ,value: 'cos'},
+                { message: 'log' ,value: 'log'},
+                { message: 'log2' ,value: 'log2'},
+                { message: '<' ,value: 'back'},
+                { message: 'log10' ,value: 'log10'},
+                { message: 'abs' ,value: 'abs'},
+                { message: 'pow' ,value: 'pow'},
+                { message: 'sqrt' ,value: 'sqrt'},
+                { message: 'tan' ,value: 'tan'},
+                { message: 'asin' ,value: 'asin'},
+                { message: 'acos' ,value: 'acos'},
+                { message: 'atan' ,value: 'atan'}
             ]
         }
     },
@@ -54,6 +60,10 @@ Vue.component('keyboard', {
                 case "backspace":
                     this.$dispatch('vir-backspace');
                     break;
+                case "back":
+                    this.numPanelHide = 0;
+                    this.fxPanelHide = 1;
+                    break;
                 default:
                     this.$dispatch('vir-enter',symbolText);
             }
@@ -61,6 +71,11 @@ Vue.component('keyboard', {
         mBack:function(){
             this.ishide = !this.ishide;
             this.$dispatch('vir-back');
+        },
+        fxClick:function(){
+            this.numPanelHide = 1;
+            this.fxPanelHide = 0;
+            console.log('fx click');
         }
     }
 });
