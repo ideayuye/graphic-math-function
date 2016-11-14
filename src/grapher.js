@@ -265,3 +265,5 @@ Grapher.prototype.mScale = function(ev){
     this.draw();
 }
 
+module.exports = Grapher;
+

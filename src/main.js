@@ -1,8 +1,15 @@
 
+var Hammer = require('./hammer.min.js');
+var Vue = require('./vue.min.js');
+var detector = require('./libs/detector.js');
+var Grapher = require('./grapher.js');
+require('./libs/Keyboard.js');
+
+
 var grapher = null;
 var canvas = document.getElementById('mainCanvas');
 //判断平台
-var isMobile = isMobile();
+var isMobile = detector.isMobile;
 
 //二分查找算法
 function binarySearch($array, $val) {

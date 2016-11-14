@@ -41,7 +41,7 @@ var isMobile = function(){
     return isMobile;
 }
 
-/*module.exports = {
+module.exports = {
     os : detectOS(),
     isMobile : isMobile() 
-}*/
+}
