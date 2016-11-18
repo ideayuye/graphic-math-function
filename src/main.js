@@ -57,7 +57,7 @@ function myInit () {
             left:50,
             textWidths:[0],//每个长度对应的字符宽度
             notfocus:1, //虚拟框是否获得焦点
-            keyboardHide:1
+            keyboardShow:0
         },
         methods: {
             changeFormula: function () {
@@ -75,10 +75,10 @@ function myInit () {
                     grapher.draw();
                 }
             },
-            helpClick :function(e){
+            /*helpClick :function(e){
                 e.stopPropagation();
                 this.ishide = !this.ishide;
-            },
+            },*/
             fixCursor:function(){
                 this.left = 40 + this.textWidths[this.focusIndex];
             },
@@ -96,11 +96,9 @@ function myInit () {
                 this.focusIndex = current;
                 this.notfocus = 0;
                 this.fixCursor();
-                this.keyboardHide = 0;
-            }
-        },
-        events:{
-            'vir-enter':function(symbolText){
+                this.keyboardShow = 1;
+            },
+            'virEnter':function(symbolText){
                 if(this.notfocus )
                     return;
                 var focusIndex = this.focusIndex;
@@ -118,15 +116,18 @@ function myInit () {
                 //刷新图形
                 this.changeFormula();
             },
-            'vir-backspace':function(){
+            'virBackspace':function(){
                 var focusIndex = this.focusIndex;
                 this.formula = this.formula.slice(0,focusIndex-1) + this.formula.slice(focusIndex);
                 this.focusIndex--;
                 this.fixCursor();
             },
-            'vir-back':function(){
+            'virBack':function(){
                 this.notfocus = 1;
             }
+        },
+        events:{
+            
         }
     });
 
@@ -138,7 +139,7 @@ function myInit () {
         var keyboard = document.querySelector('.keyboard-panel');
         if(!inputContent.contains(e.target) && !keyboard.contains(e.target)){
             app.notfocus = 1;
-            app.keyboardHide = 1;
+            app.keyboardShow = 0;
         }
     }
 }

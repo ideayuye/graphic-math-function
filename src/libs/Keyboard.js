@@ -7,7 +7,7 @@ var Vue = require('./../vue.min.js');
 
 Vue.component('keyboard', {
     template: "#tmpl_keyboard",
-    props:['ishide'],
+    props:['show'],
     data:function(){
         return {
             funcBtns: [
@@ -18,7 +18,7 @@ Vue.component('keyboard', {
                 { message: '4' ,value: '4'},
                 { message: '5' ,value: '5'},
                 { message: '6' ,value: '6'},
-                { message: 'sin' ,value: 'sin'},
+                { message: '∏' ,value: 'PI'},
                 { message: '7' ,value: '7'},
                 { message: '8' ,value: '8'},
                 { message: '9' ,value: '9'},
@@ -38,6 +38,7 @@ Vue.component('keyboard', {
             numPanelHide:0,
             fxPanelHide:1,
             fxBtns:[
+                { message: 'sin' ,value: 'sin'},
                 { message: 'cos' ,value: 'cos'},
                 { message: 'log' ,value: 'log'},
                 { message: 'log2' ,value: 'log2'},
@@ -49,7 +50,8 @@ Vue.component('keyboard', {
                 { message: 'tan' ,value: 'tan'},
                 { message: 'asin' ,value: 'asin'},
                 { message: 'acos' ,value: 'acos'},
-                { message: 'atan' ,value: 'atan'}
+                { message: 'atan' ,value: 'atan'},
+                { message: '自然数' ,value: 'E'}
             ]
         }
     },
@@ -60,24 +62,23 @@ Vue.component('keyboard', {
             //触发输入按钮点击事件
             switch(symbolText){
                 case "backspace":
-                    this.$dispatch('vir-backspace');
+                    this.$emit('vir-backspace');
                     break;
                 case "back":
                     this.numPanelHide = 0;
                     this.fxPanelHide = 1;
                     break;
                 default:
-                    this.$dispatch('vir-enter',symbolText);
+                    this.$emit('vir-enter',symbolText);
             }
         },
         mBack:function(){
-            this.ishide = !this.ishide;
-            this.$dispatch('vir-back');
+            this.show = 0;
+            this.$emit('vir-back');
         },
         fxClick:function(){
             this.numPanelHide = 1;
             this.fxPanelHide = 0;
-            console.log('fx click');
         }
     }
 });
