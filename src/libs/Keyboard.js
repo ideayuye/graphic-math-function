@@ -73,12 +73,14 @@ Vue.component('keyboard', {
             }
         },
         mBack:function(){
-            this.show = 0;
             this.$emit('vir-back');
         },
         fxClick:function(){
             this.numPanelHide = 1;
             this.fxPanelHide = 0;
+        },
+        helpClick:function(){
+            this.$emit('help');
         }
     }
 });

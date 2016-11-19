@@ -52,12 +52,12 @@ function myInit () {
         el: '#input-panel',
         data: {
             formula: '',
-            ishide : true,
             focusIndex:0,
             left:50,
             textWidths:[0],//每个长度对应的字符宽度
             notfocus:1, //虚拟框是否获得焦点
-            keyboardShow:0
+            keyboardShow:0,
+            helpShow:0
         },
         methods: {
             changeFormula: function () {
@@ -75,10 +75,6 @@ function myInit () {
                     grapher.draw();
                 }
             },
-            /*helpClick :function(e){
-                e.stopPropagation();
-                this.ishide = !this.ishide;
-            },*/
             fixCursor:function(){
                 this.left = 40 + this.textWidths[this.focusIndex];
             },
@@ -97,6 +93,8 @@ function myInit () {
                 this.notfocus = 0;
                 this.fixCursor();
                 this.keyboardShow = 1;
+
+
             },
             'virEnter':function(symbolText){
                 if(this.notfocus )
@@ -124,20 +122,21 @@ function myInit () {
             },
             'virBack':function(){
                 this.notfocus = 1;
+                this.keyboardShow = 0;
+            },
+            'helpClick':function(){
+                this.helpShow = 1;
             }
-        },
-        events:{
-            
         }
     });
 
     document.ontouchend = function(e){
         var help = document.querySelector('.help');
-        if(!help.contains(e.target))
+        if(help&&!help.contains(e.target))
             app.ishide = true;
         var inputContent = document.querySelector('.vir-input');
         var keyboard = document.querySelector('.keyboard-panel');
-        if(!inputContent.contains(e.target) && !keyboard.contains(e.target)){
+        if(!inputContent.contains(e.target) && keyboard && !keyboard.contains(e.target)){
             app.notfocus = 1;
             app.keyboardShow = 0;
         }

@@ -13,20 +13,8 @@ li {
   width: 100%;
   height: 100%; }
 
-#myCoords {
-  position: fixed;
-  top: 46px;
-  left: 0;
-  color: #fff; }
-
 #input-panel {
   height: 0; }
-
-#formula-box {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%; }
 
 #input-panel input {
   display: block;
@@ -41,17 +29,26 @@ li {
   left: 5px;
   z-index: 1; }
 
+.formula-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; }
+
 /*帮助面板*/
 .hide {
   display: none !important; }
 
 .help {
+  position: fixed;
+  top: 50%;
+  left: 5%;
   color: #666;
   background: #FFF;
   padding: 6px 10px;
   width: 90%;
-  margin: 10px auto;
-  font: 12px "Microsoft YaHei"; }
+  font: 12px "Microsoft YaHei";
+  box-sizing: border-box; }
   .help ul {
     padding-left: 12px; }
 

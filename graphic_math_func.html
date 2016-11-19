@@ -17,7 +17,7 @@
 	<div class="keyboard-panel"  v-if="show">
 		<ul class="menu-row">
 			<li class="k-fn" v-on:click="fxClick"><a href="#fx-panel" ></a></li>
-			<li class="k-help"><a href="javascript:;" class="i-help" ></a></li>
+			<li class="k-help" v-on:click="helpClick"><a href="javascript:;" class="i-help" ></a></li>
 			<li class="k-back"><a href="javascript:;" v-on:click="mBack"></a></li>
 		</ul>
 		<div class="func-btns " id="num-panel" v-bind:class="{'hide':numPanelHide}">
@@ -62,7 +62,7 @@
 			
 		</div>
 		<!--help组件-->
-		<div class='help ' v-bind:class="{'hide':ishide}">
+		<div class='help ' v-if:"helpShow">
 			<p>注：系统不能直接识别数学函数表达式，需要把部分运算符、函数替换为可识别函数</p>
 			<ul>
 				<li>1. 使用"x"代表变量</li>
@@ -75,11 +75,11 @@
 			
 		</div>
 		<!--输入面板-->
-
 		<keyboard v-bind:show='keyboardShow' 
 			v-on:vir-enter='virEnter'
 			v-on:vir-backspace='virBackspace'
-			v-on:vir-back='virBack' ></keyboard>
+			v-on:vir-back='virBack'
+			v-on:help='helpClick' ></keyboard>
 
 	</div>
 	<canvas id="mainCanvas" width="500" height="500"></canvas>

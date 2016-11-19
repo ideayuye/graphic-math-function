@@ -25,22 +25,8 @@ li {
     width: 100%;height: 100%;
 }
 
-#myCoords{
-    position: fixed;
-    top: 46px;
-    left: 0;
-    color: #fff;
-}
-
 #input-panel{
     height: 0;
-}
-
-#formula-box{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
 }
 
 #input-panel input{
@@ -58,14 +44,26 @@ li {
     z-index: 1;
 }
 
+.formula-box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
 /*帮助面板*/
 .hide{
     display: none !important;
 }
 
 .help{
-    color: #666;background: #FFF;padding: 6px 10px;width: 90%; margin: 10px auto;
+    position: fixed;
+    top: 50%;
+    left: 5%;
+    color: #666;background: #FFF;
+    padding: 6px 10px;width: 90%; 
     font: 12px "Microsoft YaHei";
+    box-sizing: border-box;
 
     ul{
         padding-left: 12px;
@@ -230,7 +228,6 @@ li {
     }
 }
 
-
 @keyframes flashing{
     0%{opacity: 0;}
     25%{opacity: 0.5;}
@@ -245,3 +242,4 @@ li {
 .fade-enter, .fade-leave-active {
   opacity: 0
 }
+
