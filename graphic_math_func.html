@@ -14,7 +14,7 @@
 	<!--模板[[-->
 	<script type="text/html" id="tmpl_keyboard">
 			<transition name="fade">
-	<div class="keyboard-panel"  v-if="show">
+	<div class="keyboard-panel"  v-show="show">
 		<ul class="menu-row">
 			<li class="k-fn" v-on:click="fxClick"><a href="#fx-panel" ></a></li>
 			<li class="k-help" v-on:click="helpClick"><a href="javascript:;" class="i-help" ></a></li>
@@ -62,7 +62,7 @@
 			
 		</div>
 		<!--help组件-->
-		<div class='help ' v-if:"helpShow">
+		<div class='help ' v-show="helpShow" v-bind:style="helpStyle" ref="help1">
 			<p>注：系统不能直接识别数学函数表达式，需要把部分运算符、函数替换为可识别函数</p>
 			<ul>
 				<li>1. 使用"x"代表变量</li>

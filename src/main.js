@@ -57,7 +57,11 @@ function myInit () {
             textWidths:[0],//每个长度对应的字符宽度
             notfocus:1, //虚拟框是否获得焦点
             keyboardShow:0,
-            helpShow:0
+            helpShow:0,
+            helpStyle:{
+                "margin-top":"0px"
+            },
+            helpFix:0,
         },
         methods: {
             changeFormula: function () {
@@ -93,8 +97,6 @@ function myInit () {
                 this.notfocus = 0;
                 this.fixCursor();
                 this.keyboardShow = 1;
-
-
             },
             'virEnter':function(symbolText){
                 if(this.notfocus )
@@ -125,21 +127,34 @@ function myInit () {
                 this.keyboardShow = 0;
             },
             'helpClick':function(){
+                this.keyboardShow = 0;
                 this.helpShow = 1;
+                this.notfocus = 1;
+                
+                if(!this.helpFix){
+                    this.$nextTick(function(){
+                        var h = this.$el.querySelector('.help').getBoundingClientRect().height;
+                        this.helpStyle["margin-top"] = -h*0.5+"px";
+                        this.helpFix = 1;
+                    });
+                }
             }
         }
     });
 
-    document.ontouchend = function(e){
-        var help = document.querySelector('.help');
-        if(help&&!help.contains(e.target))
-            app.ishide = true;
+    canvas.ontouchend = function(e){
+        /*var help = document.querySelector('.help');
+        // if(help&&!help.contains(e.target))
+        //     app.ishide = true;
         var inputContent = document.querySelector('.vir-input');
         var keyboard = document.querySelector('.keyboard-panel');
         if(!inputContent.contains(e.target) && keyboard && !keyboard.contains(e.target)){
             app.notfocus = 1;
             app.keyboardShow = 0;
-        }
+        }*/
+        app.notfocus = 1;
+        app.keyboardShow = 0;
+        app.helpShow = 0;
     }
 }
 
