@@ -61,7 +61,7 @@ function myInit () {
             helpStyle:{
                 "margin-top":"0px"
             },
-            helpFix:0,
+            helpFix:0
         },
         methods: {
             changeFormula: function () {
@@ -130,7 +130,7 @@ function myInit () {
                 this.keyboardShow = 0;
                 this.helpShow = 1;
                 this.notfocus = 1;
-                
+                //居中帮助面板
                 if(!this.helpFix){
                     this.$nextTick(function(){
                         var h = this.$el.querySelector('.help').getBoundingClientRect().height;
