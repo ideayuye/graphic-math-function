@@ -3,9 +3,7 @@
 *   输入键盘
 */
 
-var Vue = require('./../vue.min.js');
-
-Vue.component('keyboard', {
+var Keyboard = {
     template: "#tmpl_keyboard",
     props:['show'],
     data:function(){
@@ -83,5 +81,7 @@ Vue.component('keyboard', {
             this.$emit('help');
         }
     }
-});
+}
+
+module.exports = Keyboard;
 
