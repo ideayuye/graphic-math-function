@@ -9,8 +9,9 @@ var captureMousePos = function (ev) {
     return 1;
 }
 
-function Grapher() {
-    this.mCanvas = document.getElementById('mainCanvas');
+function Grapher(canvas) {
+    this.mCanvas = canvas;
+    this.initSize();
     this.mContext = this.mCanvas.getContext('2d');
 
     this.mXres = this.mCanvas.width = this.mCanvas.clientWidth;
@@ -29,8 +30,6 @@ function Grapher() {
     this.mRangeType = 2; // free
     this.mShowAxes = true;
     this.mShowGuides = true;
-
-
 
     this.formula = "x";
     this.draw();
@@ -263,6 +262,13 @@ Grapher.prototype.mScale = function(ev){
     this.mRx = this.mRefRx / scale;
     this.mRy = this.mRefRx / scale;
     this.draw();
+}
+
+Grapher.prototype.initSize = function(){
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    this.mCanvas.setAttribute('width', w);
+    this.mCanvas.setAttribute('height', h);
 }
 
 module.exports = Grapher;

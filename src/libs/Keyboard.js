@@ -24,7 +24,7 @@ var Keyboard = {
                 { message: '(' ,value: '('},
                 { message: '0' ,value: '0'},
                 { message: ')' ,value: ')'},
-                { message: 'x' ,value: 'x'},
+                { message: 'x' ,value: 'x'}
             ],
             operators:[
                 { message: '.',value: '.' },
@@ -49,7 +49,8 @@ var Keyboard = {
                 { message: 'asin' ,value: 'asin'},
                 { message: 'acos' ,value: 'acos'},
                 { message: 'atan' ,value: 'atan'},
-                { message: '自然数' ,value: 'E'}
+                { message: '自然数' ,value: 'E'},
+                { message: ',' ,value: ','}
             ]
         }
     },

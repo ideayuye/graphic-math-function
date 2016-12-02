@@ -1,31 +1,13 @@
 
+var Vue = require('./vue.min.js');
+var Grapher = require('./libs/grapher.js');
 var Hammer = require('./hammer.min.js');
 var detector = require('./libs/detector.js');
-var start = require('./libs/app.js');
-var app;
-var grapher = null;
+var formula = require('./libs/formulaInput.js');
 var canvas = document.getElementById('mainCanvas');
+var grapher =  new Grapher(canvas);
 var isMobile = detector.isMobile;//判断平台
 
-//页面点击事件
-function bindGlobalTouch(){
-    canvas.ontouchend = function(e){
-        /*var help = document.querySelector('.help');
-        // if(help&&!help.contains(e.target))
-        //     app.ishide = true;
-        var inputContent = document.querySelector('.vir-input');
-        var keyboard = document.querySelector('.keyboard-panel');
-        if(!inputContent.contains(e.target) && keyboard && !keyboard.contains(e.target)){
-            app.notfocus = 1;
-            app.keyboardShow = 0;
-        }*/
-        if(app){
-            app.notfocus = 1;
-            app.keyboardShow = 0;
-            app.helpShow = 0;
-        }
-    }
-}
 
 //绑定鼠标事件
 function bindMouseEvent() {
@@ -61,9 +43,12 @@ function bindMouseEvent() {
 }
 
 !function(){
-    start.initGraph(canvas);
-    app = start.initApp();
-    bindGlobalTouch();
+    new Vue({
+        el:'#app',
+        components:{
+            'formula-input': formula.genComponent(canvas,grapher)
+        }
+    });
     bindMouseEvent();
 }();
 

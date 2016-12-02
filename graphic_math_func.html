@@ -6,79 +6,84 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 	<meta name="wap-font-scale" content="no">
-	<link rel="stylesheet" type="text/css" href="src/normalize.css">
-	<link rel="stylesheet" type="text/css" href="src/style.css">
+	<link rel="stylesheet" type="text/css" href="src/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="src/css/style.css">
 </head>
 
 <body>
 	<!--模板[[-->
 	<script type="text/html" id="tmpl_keyboard">
-			<transition name="fade">
-	<div class="keyboard-panel"  v-show="show">
-		<ul class="menu-row">
-			<li class="k-fn" v-on:click="fxClick"><a href="#fx-panel" ></a></li>
-			<li class="k-help" v-on:click="helpClick"><a href="javascript:;" class="i-help" ></a></li>
-			<li class="k-back"><a href="javascript:;" v-on:click="mBack"></a></li>
-		</ul>
-		<div class="func-btns " id="num-panel" v-bind:class="{'hide':numPanelHide}">
-			<div class="l-operators flex-item">
-				<div class="i-t" v-for="item in operators" >
-					<a v-on:touchend="funcBtnClick" v-bind:data-value="item.value">{{item.message}}</a>
+		<transition name="fade">
+			<div class="keyboard-panel"  v-show="show">
+				<ul class="menu-row">
+					<li class="k-fn" v-on:click="fxClick"><a href="#fx-panel" ></a></li>
+					<li class="k-help" v-on:click="helpClick"><a href="javascript:;" class="i-help" ></a></li>
+					<li class="k-back"><a href="javascript:;" v-on:click="mBack"></a></li>
+				</ul>
+				<div class="func-btns " id="num-panel" v-bind:class="{'hide':numPanelHide}">
+					<div class="l-operators flex-item">
+						<div class="i-t" v-for="item in operators" >
+							<a v-on:touchend="funcBtnClick" v-bind:data-value="item.value">{{item.message}}</a>
+						</div>
+					</div>
+					<div class="r-keys clearfix flex-item">
+						<div class="i-t" v-for="item in funcBtns">
+							<a href="javascript:;" v-on:touchend="funcBtnClick" v-bind:data-value="item.value">{{item.message}}</a>
+						</div>
+					</div>
+				</div>
+				<div class="func-btns " id="fx-panel"  v-bind:class="{'hide':fxPanelHide}">
+					<div class="l-operators flex-item">
+						<div class="i-t" v-for="item in operators" >
+							<a v-on:touchend="funcBtnClick" v-bind:data-value="item.value">{{item.message}}</a>
+						</div>
+					</div>
+					<div class="r-keys clearfix flex-item">
+						<div class="i-t" v-for="item in fxBtns">
+							<a href="javascript:;" v-on:touchend="funcBtnClick" v-bind:data-value="item.value">{{item.message}}</a>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="r-keys clearfix flex-item">
-				<div class="i-t" v-for="item in funcBtns">
-					<a href="javascript:;" v-on:touchend="funcBtnClick" v-bind:data-value="item.value">{{item.message}}</a>
+		</transition>
+	</script>
+
+	<script type="text/html" id="tmpl_input_panel">
+		<div id="input-panel">
+			<div class="formula-box">
+				<label class="l-func">f(x)=</label>
+				<!--<input id="input_formula"  type="text" name="" 
+				v-model="formula"  placeholder="请输入数学函数" v-on:change="changeFormula" > -->
+				<!--虚拟input-->
+				<div class="vir-input">
+					<i class="v-cursor" v-bind:style="{left:left+'px'}" v-bind:class="{'hide':notfocus}"></i>
+					<div class="v-content" v-on:touchstart="virInputClick">{{formula}}</div>
 				</div>
+				
 			</div>
+			<!--help组件-->
+			<div class='help '  v-show="helpShow" v-bind:style="helpStyle" >
+				<p>注：系统不能直接识别数学函数表达式，需要把部分运算符、函数替换为可识别函数</p>
+				<ul>
+					<li>1. 使用"x"代表变量</li>
+					<li>2. 3x => 3*x</li>
+					<li>3. 自然常数 => E</li>
+					<li>4. 2∏x => 2*PI*x</li>
+					<li>5. 5ⁿ => pow(5,x)</li>
+					<li>6. log₂(x) => log2(x)</li>
+				</ul>
+			</div>
+			<!--输入面板-->
+			<keyboard v-bind:show='keyboardShow' 
+				v-on:vir-enter='virEnter'
+				v-on:vir-backspace='virBackspace'
+				v-on:vir-back='virBack'
+				v-on:help='helpClick' ></keyboard>
 		</div>
-		<div class="func-btns " id="fx-panel"  v-bind:class="{'hide':fxPanelHide}">
-			<div class="l-operators flex-item">
-				<div class="i-t" v-for="item in operators" >
-					<a v-on:touchend="funcBtnClick" v-bind:data-value="item.value">{{item.message}}</a>
-				</div>
-			</div>
-			<div class="r-keys clearfix flex-item">
-				<div class="i-t" v-for="item in fxBtns">
-					<a href="javascript:;" v-on:touchend="funcBtnClick" v-bind:data-value="item.value">{{item.message}}</a>
-				</div>
-			</div>
-		</div>
-	</div>
-			</transition>
-		
 	</script>
 	<!--]]模板-->
-	<div id="input-panel">
-		<div class="formula-box">
-			<label class="l-func">f(x)=</label>
-			<!--<input id="input_formula"  type="text" name="" 
-			v-model="formula"  placeholder="请输入数学函数" v-on:change="changeFormula" > -->
-			<!--虚拟input-->
-			<div class="vir-input">
-				<i class="v-cursor" v-bind:style="{left:left+'px'}" v-bind:class="{'hide':notfocus}"></i>
-				<div class="v-content" v-on:touchstart="virInputClick">{{formula}}</div>
-			</div>
-			
-		</div>
-		<!--help组件-->
-		<div class='help '  v-show="helpShow" v-bind:style="helpStyle" >
-			<p>注：系统不能直接识别数学函数表达式，需要把部分运算符、函数替换为可识别函数</p>
-			<ul>
-				<li>1. 使用"x"代表变量</li>
-				<li>2. 3x => 3*x</li>
-				<li>3. 自然常数 => E</li>
-				<li>4. 2∏x => 2*PI*x</li>
-				<li>5. 5ⁿ => pow(5,x)</li>
-				<li>6. log₂(x) => log2(x)</li>
-			</ul>
-		</div>
-		<!--输入面板-->
-		<keyboard v-bind:show='keyboardShow' 
-			v-on:vir-enter='virEnter'
-			v-on:vir-backspace='virBackspace'
-			v-on:vir-back='virBack'
-			v-on:help='helpClick' ></keyboard>
+	<div id="app">
+		<formula-input></formula-input>
 	</div>
 	<!--多个函数表示选择-->
 	<!--求值-->

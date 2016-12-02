@@ -1,60 +1,35 @@
 
-var Vue = require('./../vue.min.js');
+
 var keyboard = require('./Keyboard.js');
-var Grapher = require('./grapher.js');
+var util = require('./util.js');
+var binarySearch = util.binarySearch;
+var measureText = util.measureText;
 
-//二分查找算法
-function binarySearch($array, $val) {
-    var $count = $array.length;
-    var $low = 0;
-    var $high = $count - 1;
-    while ($low <= $high) {//跳出条件
-        $mid = parseInt(($low + $high) / 2);
-        if ($array[$mid] <= $val && $array[$mid+1]>$val ) {
-            return $mid;
-        }
-        if ($array[$mid] < $val) {
-            $low = $mid + 1;
-        } else {
-            $high = $mid - 1;
-        }
-    }
-    return false;
-}
+//全局页面点击事件
+function pageTouch(){
+    var me = this;
+    me.notfocus = 1;
+    me.keyboardShow = 0;
+    me.helpShow = 0;
+};
 
-//测量文本的宽度
-var cavsMeasure = document.createElement('canvas');
-var ctx = cavsMeasure.getContext('2d');
-function measureText(text){
-    var inputc = document.querySelector('.v-content');
-    // ctx.font = "12px sans-serif";
-    ctx.font = window.getComputedStyle(inputc).font;
-    return ctx.measureText(text).width;
-}
-
-function initGraph (canvas) {
-    var w = window.innerWidth;
-    var h = window.innerHeight;
-    canvas.setAttribute('width', w);
-    canvas.setAttribute('height', h);
-    grapher = new Grapher();
-}
-
-function initApp(){
-    return new Vue({
-        el: '#input-panel',
-        data: {
-            formula: '',
-            focusIndex:0,
-            left:50,
-            textWidths:[0],//每个长度对应的字符宽度
-            notfocus:1, //虚拟框是否获得焦点
-            keyboardShow:0,
-            helpShow:0,
-            helpStyle:{
-                "margin-top":"0px"
-            },
-            helpFix:0
+function genComponent(canvas,grapher){
+    return {
+        template: '#tmpl_input_panel',
+        data: function () {
+            return {
+                formula: '',
+                focusIndex: 0,
+                left: 50,
+                textWidths: [0],//每个长度对应的字符宽度
+                notfocus: 1, //虚拟框是否获得焦点
+                keyboardShow: 0,
+                helpShow: 0,
+                helpStyle: {
+                    "margin-top": "0px"
+                },
+                helpFix: 0
+            }
         },
         components:{
             keyboard:keyboard
@@ -94,7 +69,7 @@ function initApp(){
                 this.fixCursor();
                 this.keyboardShow = 1;
             },
-            'virEnter':function(symbolText){
+            virEnter:function(symbolText){
                 if(this.notfocus )
                     return;
                 var focusIndex = this.focusIndex;
@@ -112,17 +87,17 @@ function initApp(){
                 //刷新图形
                 this.changeFormula();
             },
-            'virBackspace':function(){
+            virBackspace:function(){
                 var focusIndex = this.focusIndex;
                 this.formula = this.formula.slice(0,focusIndex-1) + this.formula.slice(focusIndex);
                 this.focusIndex--;
                 this.fixCursor();
             },
-            'virBack':function(){
+            virBack:function(){
                 this.notfocus = 1;
                 this.keyboardShow = 0;
             },
-            'helpClick':function(){
+            helpClick:function(){
                 this.keyboardShow = 0;
                 this.helpShow = 1;
                 this.notfocus = 1;
@@ -134,13 +109,21 @@ function initApp(){
                         this.helpFix = 1;
                     });
                 }
+            },
+            pageTouchHandle :function(){
+                pageTouch.call(this);
             }
+        },
+        mounted:function(){
+            canvas.addEventListener('touchend',this.pageTouchHandle);
+        },
+        destroyed:function(){
+            canvas.removeEventListener('touchend',this.pageTouchHandle);
         }
-    });
+    };
 }
 
 module.exports = {
-    initApp:initApp,
-    initGraph:initGraph
+    genComponent:genComponent
 };
 
