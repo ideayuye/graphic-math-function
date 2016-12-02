@@ -171,6 +171,7 @@ Grapher.prototype.draw = function (id) {
         ctx.lineWidth = 1;
         ctx.fillStyle = '#FFFFFF';
         ctx.font = '10px arial';
+        ctx.textAlign = 'left';
 
         var n = this.getPrecision()
         for (i = 0; i < 11; i++) {
@@ -179,11 +180,13 @@ Grapher.prototype.draw = function (id) {
             ctx.beginPath(); ctx.moveTo(ix, this.mYres); ctx.lineTo(ix, this.mYres - 12); ctx.stroke(); ctx.closePath();
             ctx.fillText(x.toFixed(n), ix + 4, this.mYres - 2);
         }
+
+        ctx.textAlign = 'right';
         for (i = 0; i < 11; i++) {
             var y = maxy - 2.0 * this.mRy * i / 10.0;
             var iy = this.mYres * i / 10;
-            ctx.beginPath(); ctx.moveTo(0, iy); ctx.lineTo(12, iy); ctx.stroke(); ctx.closePath();
-            ctx.fillText(y.toFixed(n), 2, iy + 10);
+            ctx.beginPath(); ctx.moveTo(this.mXres, iy); ctx.lineTo(this.mXres-12, iy); ctx.stroke(); ctx.closePath();
+            ctx.fillText(y.toFixed(n), this.mXres-2, iy + 10);
         }
 
     }

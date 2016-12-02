@@ -20,7 +20,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('watch',function(){
-    gulp.watch('src/style.scss',['sass']);
+    gulp.watch('src/css/*.scss',['sass']);
 })
 
 

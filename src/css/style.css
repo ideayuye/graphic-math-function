@@ -208,3 +208,10 @@ li {
 
 .fade-enter, .fade-leave-active {
   opacity: 0; }
+
+.formula_list {
+  position: fixed;
+  top: 60px;
+  left: 10px; }
+  .formula_list li {
+    color: #a0ffc0; }

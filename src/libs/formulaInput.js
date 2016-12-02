@@ -49,6 +49,7 @@ function genComponent(canvas,grapher){
                     grapher.formula = formula;
                     grapher.draw();
                 }
+                this.$emit('test',{t:'change'});
             },
             fixCursor:function(){
                 this.left = 40 + this.textWidths[this.focusIndex];

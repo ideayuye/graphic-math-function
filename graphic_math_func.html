@@ -47,7 +47,7 @@
 			</div>
 		</transition>
 	</script>
-
+	<!--输入框-->
 	<script type="text/html" id="tmpl_input_panel">
 		<div id="input-panel">
 			<div class="formula-box">
@@ -81,9 +81,17 @@
 				v-on:help='helpClick' ></keyboard>
 		</div>
 	</script>
+	<script type="text/html" id="tmpl_formula_list">
+		<ul class="formula_list">
+			<li v-for="f in formulas">
+				<label ><input type="checkbox">{{f}}</label>
+			</li>
+		</ul>	
+	</script>
 	<!--]]模板-->
 	<div id="app">
 		<formula-input></formula-input>
+		<formula-list ></formula-list>
 	</div>
 	<!--多个函数表示选择-->
 	<!--求值-->
