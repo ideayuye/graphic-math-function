@@ -57,7 +57,7 @@
 				<!--虚拟input-->
 				<div class="vir-input">
 					<i class="v-cursor" v-bind:style="{left:left+'px'}" v-bind:class="{'hide':notfocus}"></i>
-					<div class="v-content" v-on:touchstart="virInputClick">{{formula}}</div>
+					<div class="v-content" v-on:touchstart="virInputClick">{{editVal}}</div>
 				</div>
 				
 			</div>
@@ -83,10 +83,10 @@
 	</script>
 	<script type="text/html" id="tmpl_formula_list">
 		<ul class="formula_list">
-			<li v-for="f in formulas">
-				<label ><input type="checkbox">{{f}}</label>
+			<li v-for="(f,i) in cptFormulas" @click="selected(i)">
+				<label >{{f}}</label>
 			</li>
-		</ul>	
+		</ul>
 	</script>
 	<!--]]模板-->
 	<div id="app">

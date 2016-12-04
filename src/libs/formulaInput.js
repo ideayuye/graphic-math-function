@@ -18,7 +18,7 @@ function genComponent(canvas,grapher){
         template: '#tmpl_input_panel',
         data: function () {
             return {
-                formula: '',
+                editVal: '',
                 focusIndex: 0,
                 left: 50,
                 textWidths: [0],//每个长度对应的字符宽度
@@ -34,9 +34,20 @@ function genComponent(canvas,grapher){
         components:{
             keyboard:keyboard
         },
+        computed:{
+            selFormula:function(){
+                return this.$store.state.formulas[this.$store.state.selected];
+            }
+        },
+        watch:{
+            selFormula : function(val){
+                this.editVal =  val;
+                this.calTextWidth();
+            }
+        },
         methods: {
             changeFormula: function () {
-                var formula = this.formula;
+                var formula = this.editVal;
                 if (!grapher.notOnBlackList(formula))
                     return;
                 var x = 1.1, y = 0, isError = 0;
@@ -46,10 +57,9 @@ function genComponent(canvas,grapher){
                     isError = 1;
                 }
                 if (!isError && !isNaN(y)) {
-                    grapher.formula = formula;
+                    this.$store.commit('edit',{formula:formula});
                     grapher.draw();
                 }
-                this.$emit('test',{t:'change'});
             },
             fixCursor:function(){
                 this.left = 40 + this.textWidths[this.focusIndex];
@@ -64,7 +74,7 @@ function genComponent(canvas,grapher){
                 var dx = pageX - boundRect.left;
                 //计算光标位置
                 var current = binarySearch(this.textWidths,dx);
-                current = current === false? this.formula.length:current;
+                current = current === false? this.editVal.length:current;
                 this.focusIndex = current;
                 this.notfocus = 0;
                 this.fixCursor();
@@ -74,23 +84,27 @@ function genComponent(canvas,grapher){
                 if(this.notfocus )
                     return;
                 var focusIndex = this.focusIndex;
-                this.formula = this.formula.slice(0,focusIndex) + symbolText + this.formula.slice(focusIndex);
+                this.editVal = this.editVal.slice(0,focusIndex) + symbolText + this.editVal.slice(focusIndex);
                 this.focusIndex += symbolText.length;
                 
                 //计算每个字符对应的宽度
-                this.textWidths=[0];
-                for(var i=1;i<=this.formula.length;i++){
-                    var txtWidth = measureText(this.formula.slice(0,i));
-                    this.textWidths.push(txtWidth);
-                }
+                this.calTextWidth();
 
                 this.fixCursor();
                 //刷新图形
                 this.changeFormula();
             },
+            calTextWidth:function(){
+                //计算每个字符对应的宽度
+                this.textWidths=[0];
+                for(var i=1;i<=this.editVal.length;i++){
+                    var txtWidth = measureText(this.editVal.slice(0,i));
+                    this.textWidths.push(txtWidth);
+                }
+            },
             virBackspace:function(){
                 var focusIndex = this.focusIndex;
-                this.formula = this.formula.slice(0,focusIndex-1) + this.formula.slice(focusIndex);
+                this.editVal = this.editVal.slice(0,focusIndex-1) + this.editVal.slice(focusIndex);
                 this.focusIndex--;
                 this.fixCursor();
             },

@@ -1,4 +1,5 @@
 
+var Vuex = require('vuex');
 
 var formulaList = {
     template:'#tmpl_formula_list',
@@ -7,9 +8,17 @@ var formulaList = {
             formulas:['2*x','sin(x)']
         }
     },
+    computed:{
+        cptFormulas:function(){
+            return this.$store.state.formulas;  
+        }
+    },
     methods:{
-        test:function(){
-            console.log('test work');    
+        selected:function(selectedIndex){
+            this.$store.commit('selected',{selectedIdnex:selectedIndex});
+        },
+        remove:function(){
+            this.$store.commit('remove',{formula:'2*x'})
         }
     }
 };

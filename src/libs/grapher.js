@@ -31,7 +31,7 @@ function Grapher(canvas) {
     this.mShowAxes = true;
     this.mShowGuides = true;
 
-    this.formula = "x";
+    this.formulas = [];
     this.draw();
 }
 
@@ -163,7 +163,10 @@ Grapher.prototype.draw = function (id) {
         ctx.beginPath(); ctx.moveTo(0, yPos); ctx.lineTo(this.mXres, yPos); ctx.stroke(); ctx.closePath();
     }
 
-    this.drawGraph(this.formula, '#a0ffc0');
+    var me = this;
+    this.formulas.forEach(function(fml){
+        me.drawGraph(fml, '#a0ffc0');
+    });
 
     // guides
     if (this.mShowGuides) {
