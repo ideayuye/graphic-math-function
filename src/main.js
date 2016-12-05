@@ -60,7 +60,7 @@ function bindMouseEvent() {
     grapher.draw();
     var app  = new Vue({
         el: '#app',
-        store,
+        store: store,
         components: {
             'formula-input': formula.genComponent(canvas, grapher),
             'formula-list': formulaList
