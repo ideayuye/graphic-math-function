@@ -177,6 +177,15 @@ li {
     /*font-size: 14px;
         line-height: 36px;*/
     font: 14px/36px "SimSun"; }
+  .vir-input .v-close {
+    position: absolute;
+    display: block;
+    top: 7px;
+    right: 7px;
+    width: 20px;
+    height: 20px;
+    background: url("images/close.svg");
+    background-size: cover; }
 
 @-webkit-keyframes flashing {
   0% {
@@ -213,5 +222,10 @@ li {
   position: fixed;
   top: 60px;
   left: 10px; }
-  .formula_list li {
-    color: #a0ffc0; }
+  .formula_list .f-item {
+    height: 28px; }
+    .formula_list .f-item input {
+      float: left;
+      margin-top: 3px; }
+    .formula_list .f-item .content {
+      margin-left: 20px; }

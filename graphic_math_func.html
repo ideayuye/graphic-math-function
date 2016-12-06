@@ -8,6 +8,7 @@
 	<meta name="wap-font-scale" content="no">
 	<link rel="stylesheet" type="text/css" href="src/css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="src/css/style.css">
+	<!--<script type="text/javascript" src="src/hotcss.js"></script>-->
 </head>
 
 <body>
@@ -58,6 +59,7 @@
 				<div class="vir-input">
 					<i class="v-cursor" v-bind:style="{left:left+'px'}" v-bind:class="{'hide':notfocus}"></i>
 					<div class="v-content" v-on:touchstart="virInputClick">{{editVal}}</div>
+					<a href="javascript:;" v-show="closeShow" class="v-close" @click="cancelEdit"></a>
 				</div>
 				
 			</div>
@@ -83,8 +85,9 @@
 	</script>
 	<script type="text/html" id="tmpl_formula_list">
 		<ul class="formula_list">
-			<li v-for="(f,i) in cptFormulas" @click="selected(i)">
-				<label >{{f}}</label>
+			<li v-for="(f,i) in cptFormulas" :style="{color:f.color}" class="f-item">
+				<input type="checkbox" v-model="f.visible">
+				<div @click="selected(i)" class="content">{{f.content}}</div>
 			</li>
 		</ul>
 	</script>

@@ -5,7 +5,16 @@
     top: 60px;
     left: 10px;
 
-    li{
-        color: #a0ffc0;
+    .f-item{
+        height: 28px;
+
+        input{
+            float: left;
+            margin-top: 3px;
+        }
+
+        .content{
+            margin-left: 20px;
+        }
     }
 }

@@ -1,15 +1,14 @@
 
-var Vue = require('./vue.min.js');
+var Vue = require('vue');
 var Grapher = require('./libs/grapher.js');
 var Hammer = require('./hammer.min.js');
 var detector = require('./libs/detector.js');
-var formula = require('./libs/formulaInput.js');
+var formulaInput = require('./libs/formulaInput.js');
 var formulaList = require('./libs/formulaList.js');
 var store = require('./libs/store.js');
 var canvas = document.getElementById('mainCanvas');
 var grapher = new Grapher(canvas);
 var isMobile = detector.isMobile; //判断平台
-
 
 
 //绑定鼠标事件
@@ -56,13 +55,11 @@ function bindMouseEvent() {
 }
 
 ! function () {
-    grapher.formulas = store.state.formulas;
-    grapher.draw();
     var app  = new Vue({
         el: '#app',
-        store: store,
+        store: store(grapher),
         components: {
-            'formula-input': formula.genComponent(canvas, grapher),
+            'formula-input': formulaInput,
             'formula-list': formulaList
         }
     });

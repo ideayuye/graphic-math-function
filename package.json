@@ -27,6 +27,7 @@
     "gulp-sass": "^2.3.2",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
+    "vue": "^2.1.4",
     "vuex": "^2.0.0"
   }
 }

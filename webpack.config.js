@@ -9,7 +9,10 @@ var config = {
     //入口文件配置
     entry: path.resolve(__dirname, 'src/main.js'),
     resolve: {
-        extentions: ["", "js"]//当requrie的模块找不到时，添加这些后缀
+        extentions: ["", "js"],//当requrie的模块找不到时，添加这些后缀
+        alias: {
+            'vue$': 'vue/dist/vue.common.js'
+        }
     },
     devtool: 'eval',
     //文件导出的配置

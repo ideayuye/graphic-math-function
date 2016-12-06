@@ -165,7 +165,8 @@ Grapher.prototype.draw = function (id) {
 
     var me = this;
     this.formulas.forEach(function(fml){
-        me.drawGraph(fml, '#a0ffc0');
+        if(fml.visible)
+            me.drawGraph(fml.content,fml.color);
     });
 
     // guides
@@ -275,6 +276,18 @@ Grapher.prototype.initSize = function(){
     var h = window.innerHeight;
     this.mCanvas.setAttribute('width', w);
     this.mCanvas.setAttribute('height', h);
+}
+
+Grapher.prototype.checkFormula = function(formula){
+    if (!this.notOnBlackList(formula))
+        return;
+    var x = 1.1, y = 0, isError = 0;
+    try {
+        with (Math) { eval("y = " + formula); }
+    } catch (e) {
+        isError = 1;
+    }
+    return !isError && !isNaN(y);
 }
 
 module.exports = Grapher;
