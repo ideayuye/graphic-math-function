@@ -3,8 +3,11 @@
 *   输入键盘
 */
 
+var Vue = require('vue');
+var render = Vue.compile(document.querySelector("#tmpl_keyboard").innerHTML);
+
 var Keyboard = {
-    template: "#tmpl_keyboard",
+    render: render.render,
     props:['show'],
     data:function(){
         return {
