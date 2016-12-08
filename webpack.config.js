@@ -11,14 +11,14 @@ var config = {
     resolve: {
         extentions: ["", "js"],//当requrie的模块找不到时，添加这些后缀
         alias: {
-            'vue$': 'vue/dist/vue.common.js'
+            'vue$': 'vue/dist/vue.js'
         }
     },
-    devtool: 'eval',
+    devtool: '#eval-source-map',
     //文件导出的配置
     output: {
         path: buildPath,
-        filename: "main.js"
+        filename: "[name].js"
     },
     
     module: {
@@ -27,8 +27,22 @@ var config = {
                 test: /\.scss$/, //正则表达式匹配 .js 和 .jsx 文件
                 loader: 'style!css!sass!autoprefixer',//对匹配的文件进行处理的loader 
                 exclude: [nodemodulesPath]//排除node module中的文件
+            },
+            {
+                test:/\.vue$/,
+                loader:'vue',
+                exclude: [nodemodulesPath]
             }
         ]
+    }
+}
+
+if(NODE_ENV === "test"){
+    config.entry = path.resolve(__dirname, 'test/test.js');
+    var testBuildPath = path.resolve(__dirname, "test/build");
+    config.output = {
+        path: testBuildPath,
+        filename: 'testBundle.js'
     }
 }
 

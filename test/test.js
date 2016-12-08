@@ -10,7 +10,7 @@ describe('t1', function () {
 });
 
 var Vue = require('vue');
-var keyboard = require('./../src/libs/Keyboard.js');
+var keyboard = require('./../src/libs/Keyboard.vue');
 
 describe('mycomponent', () => {
     it('create ok', () => {

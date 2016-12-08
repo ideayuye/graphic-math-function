@@ -1,4 +1,42 @@
-var keyboard = require('./Keyboard.js');
+
+<template>
+    <div id="input-panel">
+			<div class="formula-box">
+				<label class="l-func">f(x)=</label>
+				<!--<input id="input_formula"  type="text" name="" 
+				v-model="formula"  placeholder="请输入数学函数" v-on:change="changeFormula" > -->
+				<!--虚拟input-->
+				<div class="vir-input">
+					<i class="v-cursor" v-bind:style="{left:left+'px'}" v-bind:class="{'hide':notfocus}"></i>
+					<div class="v-content" v-on:touchstart="virInputClick">{{editVal}}</div>
+					<a href="javascript:;" v-show="closeShow" class="v-close" @click="cancelEdit"></a>
+				</div>
+				
+			</div>
+			<!--help组件-->
+			<div class='help '  v-show="helpShow" v-bind:style="helpStyle" >
+				<p>注：系统不能直接识别数学函数表达式，需要把部分运算符、函数替换为可识别函数</p>
+				<ul>
+					<li>1. 使用"x"代表变量</li>
+					<li>2. 3x => 3*x</li>
+					<li>3. 自然常数 => E</li>
+					<li>4. 2∏x => 2*PI*x</li>
+					<li>5. 5ⁿ => pow(5,x)</li>
+					<li>6. log₂(x) => log2(x)</li>
+				</ul>
+			</div>
+			<!--输入面板-->
+			<keyboard v-bind:show='keyboardShow' 
+				v-on:virenter='virEnter'
+				v-on:vir-backspace='virBackspace'
+				v-on:vir-back='virBack'
+				v-on:help='helpClick' ></keyboard>
+		</div>
+</template>
+
+
+<script>
+    var keyboard = require('./Keyboard.vue');
 var util = require('./util.js');
 var binarySearch = util.binarySearch;
 var measureText = util.measureText;
@@ -12,7 +50,43 @@ function pageTouch() {
     me.helpShow = 0;
 };
 
-var methods = {
+
+var formulaInput = {
+    // template: '#tmpl_input_panel',
+    name:'formula-input',
+    data: function () {
+        return {
+            editVal: '',
+            focusIndex: 0,
+            left: 50,
+            textWidths: [0], //每个长度对应的字符宽度
+            notfocus: 1, //虚拟框是否获得焦点
+            keyboardShow: 0,
+            helpShow: 0,
+            helpStyle: {
+                "margin-top": "0px"
+            },
+            helpFix: 0,
+            closeShow:0 //取消编辑按钮是否可见
+        }
+    },
+    components: {
+        keyboard: keyboard
+    },
+    computed: {
+        selFormula: function () {
+            return this.$store.state.formulas[this.$store.state.selected];
+        }
+    },
+    watch: {
+        selFormula: function (val) {
+            this.editVal = val?val.content:'';
+            if(this.editVal)
+                this.closeShow = 1;
+            this.calTextWidth();
+        }
+    },
+    methods: {
         changeFormula: function () {
             this.$store.commit('edit', {
                 formula: this.editVal
@@ -90,44 +164,7 @@ var methods = {
             this.$store.commit('clearSelected');
             this.closeShow = 0;
         }
-    }
-
-
-var formulaInput = {
-    template: '#tmpl_input_panel',
-    data: function () {
-        return {
-            editVal: '',
-            focusIndex: 0,
-            left: 50,
-            textWidths: [0], //每个长度对应的字符宽度
-            notfocus: 1, //虚拟框是否获得焦点
-            keyboardShow: 0,
-            helpShow: 0,
-            helpStyle: {
-                "margin-top": "0px"
-            },
-            helpFix: 0,
-            closeShow:0 //取消编辑按钮是否可见
-        }
     },
-    components: {
-        keyboard: keyboard
-    },
-    computed: {
-        selFormula: function () {
-            return this.$store.state.formulas[this.$store.state.selected];
-        }
-    },
-    watch: {
-        selFormula: function (val) {
-            this.editVal = val?val.content:'';
-            if(this.editVal)
-                this.closeShow = 1;
-            this.calTextWidth();
-        }
-    },
-    methods: methods,
     mounted: function () {
         canvas.addEventListener('touchend', this.pageTouchHandle);
     },
@@ -136,5 +173,6 @@ var formulaInput = {
     }
 };
 
-
 module.exports = formulaInput;
+</script>
+
