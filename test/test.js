@@ -1,16 +1,13 @@
 
 
-// var chai = require('chai');
-var expect = chai.expect;
-
 describe('t1', function () {
     it('case1', function () {
-        expect(1 + 2).to.equal(3);
+        expect(1 + 2).toEqual(3);
     });
 });
 
 var Vue = require('vue');
-var keyboard = require('./../src/libs/Keyboard.vue');
+var keyboard = require('./../src/libs/keyboard.vue');
 
 describe('mycomponent', () => {
     it('create ok', () => {
@@ -20,7 +17,7 @@ describe('mycomponent', () => {
         }).$mount()
 
         expect(vm.$el.getAttribute('class'))
-            .to.equal('keyboard-panel')
+            .toEqual('keyboard-panel')
     })
 });
 

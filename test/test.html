@@ -2,20 +2,16 @@
 <head>
   <meta charset="utf-8">
   <title>Mocha Tests</title>
-  <link rel="stylesheet" type="text/css" href="../src/css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="../src/css/style.css">
-  <link href="libs/mocha.css" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/png" href="lib/jasmine_favicon.png">
+  <link rel="stylesheet" type="text/css" href="lib/jasmine.css">
 </head>
 <body>
   <div id="mocha"></div>
-  <script src="libs/mocha.js"></script>
-  <script src="libs/chai.min.js"></script>
+  <script type="text/javascript" src="lib/jasmine.js"></script>
+  <script type="text/javascript" src="lib/jasmine-html.js"></script>
+  <script type="text/javascript" src="lib/boot.js"></script>
 
-  <script>mocha.setup('bdd')</script>
   <script src="build/testBundle.js"></script>
-  <script>
-    // mocha.checkLeaks();
-    mocha.run();
-  </script>
+
 </body>
 </html>

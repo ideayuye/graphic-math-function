@@ -36,7 +36,7 @@
 
 
 <script>
-    var keyboard = require('./Keyboard.vue');
+    var keyboard = require('./keyboard.vue');
 var util = require('./util.js');
 var binarySearch = util.binarySearch;
 var measureText = util.measureText;
