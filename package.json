@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "set NODE_ENV=prod&&webpack -p",
-    "build-test": "set NODE_ENV=test&&webpack"
+    "mac-build": "export NODE_ENV=prod&&webpack -p",
+    "build-test": "set NODE_ENV=test&&webpack",
+    "mac-build-test":"export NODE_ENV=test&&webpack"
   },
   "repository": {
     "type": "git",
